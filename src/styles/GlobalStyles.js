@@ -1,0 +1,216 @@
+import { createGlobalStyle } from 'styled-components';
+import Medium from '../fonts/HelveticaNeueCyr-Medium.otf';
+import Bold from '../fonts/HelveticaNeueCyr-Bold.otf';
+import Black from '../fonts/HelveticaNeueCyr-Black.otf';
+import Light from '../fonts/HelveticaNeueCyr-Light.otf';
+/* stylelint-disable */
+
+export const GlobalStyles = createGlobalStyle`
+  html,
+  body,
+  div,
+  span,
+  applet,
+  object,
+  iframe,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  blockquote,
+  pre,
+  a,
+  abbr,
+  acronym,
+  address,
+  big,
+  cite,
+  code,
+  del,
+  dfn,
+  em,
+  img,
+  ins,
+  kbd,
+  q,
+  s,
+  samp,
+  small,
+  strike,
+  strong,
+  sub,
+  sup,
+  tt,
+  var,
+  b,
+  u,
+  i,
+  center,
+  dl,
+  dt,
+  dd,
+  ol,
+  ul,
+  li,
+  fieldset,
+  form,
+  label,
+  legend,
+  table,
+  caption,
+  tbody,
+  tfoot,
+  thead,
+  tr,
+  th,
+  td,
+  article,
+  aside,
+  canvas,
+  details,
+  embed,
+  figure,
+  figcaption,
+  footer,
+  header,
+  hgroup,
+  main,
+  menu,
+  nav,
+  output,
+  ruby,
+  section,
+  summary,
+  time,
+  mark,
+  audio,
+  video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+  }
+
+  article,
+  aside,
+  details,
+  figcaption,
+  figure,
+  footer,
+  header,
+  hgroup,
+  main,
+  menu,
+  nav,
+  section {
+    display: block;
+  }
+
+  body {
+    line-height: 1;
+    height: 100%;
+    width: 100%;
+  }
+
+  a:active,
+   a:focus {
+    outline: none;
+  }
+  
+  input, textarea {outline:none;}
+  input:active, textarea:active {outline:none;}
+  :focus {outline:none;}
+  textarea {resize:none;}
+  textarea {resize:vertical;}
+  textarea {resize:horizontal;}
+  
+  ol,
+  ul {
+    list-style: none;
+  }
+  
+  blockquote,
+  q {
+    quotes: none;
+  }
+  
+  blockquote:before,
+  blockquote:after,
+  q:before,
+  q:after {
+    content: '';
+    content: none;
+  }
+  
+  table {
+    border-collapse: collapse;
+    border-spacing: 0;
+  }
+  
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  body.no-scroll {
+    overflow: hidden;
+  }
+  
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+  
+  @font-face {
+  font-family: Medium;
+  src: url(${Medium});
+  }
+
+  @font-face {
+    font-family: Bold;
+    src: url(${Bold});
+  }
+
+  @font-face {
+    font-family: Black;
+    src: url(${Black});
+  }
+  
+  @font-face {
+    font-family: Light;
+    src: url(${Light});
+  }
+  
+  html {
+    font-size: 55px;
+    height: 100%;
+    width: 100%;
+  }
+  
+  body {
+    margin: 0;
+    width: 100%;
+    color: #000;
+    font-family: Medium;
+    background-color: #fff;
+  }
+  
+  body::-webkit-scrollbar {
+    width: 5px;
+}
+body::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+body::-webkit-scrollbar-thumb {
+  background-color: #1228a9;
+  outline: 1px solid slategrey;
+}
+  
+  body > div {
+    height: 100%;
+  }
+`;
+/* stylelint-enable */

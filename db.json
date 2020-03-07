@@ -1,0 +1,116 @@
+{
+  "auth": [
+    {
+      "name": "tester",
+      "login": "user",
+      "password": "123",
+      "isAdmin": false,
+      "id": 1583610647020
+    },
+    {
+      "name": "Artem. D A",
+      "login": "Artem",
+      "password": "123",
+      "isAdmin": false,
+      "id": 1583615591397
+    }
+  ],
+  "dictionary": [
+    {
+      "id": 1583610647020,
+      "login": "user",
+      "words": [
+        {
+          "id": 1583611477108,
+          "word": "t",
+          "translate": "t",
+          "pronunciation": "t"
+        },
+        {
+          "id": 1583611705516,
+          "word": "fish",
+          "translate": "213",
+          "pronunciation": "3123"
+        },
+        {
+          "id": 1583611921360,
+          "word": "й",
+          "translate": "й",
+          "pronunciation": "й"
+        },
+        {
+          "id": 1583611966264,
+          "word": "й",
+          "translate": "й",
+          "pronunciation": "й"
+        },
+        {
+          "id": 1583612006275,
+          "word": "1",
+          "translate": "1",
+          "pronunciation": "1"
+        },
+        {
+          "id": 1583612052655,
+          "word": "2",
+          "translate": "3",
+          "pronunciation": "4"
+        },
+        {
+          "id": 1583612446358,
+          "word": "Дом",
+          "translate": "312",
+          "pronunciation": "вфывф"
+        },
+        {
+          "id": 1583612472142,
+          "word": "3123",
+          "translate": "вфы",
+          "pronunciation": "чяся"
+        },
+        {
+          "id": 1583612501574,
+          "word": "3123",
+          "translate": "вфы",
+          "pronunciation": "чяся"
+        },
+        {
+          "id": 1583612535077,
+          "word": "1",
+          "translate": "1",
+          "pronunciation": "1"
+        },
+        {
+          "id": 1583612712883,
+          "word": "2131312",
+          "translate": "3123",
+          "pronunciation": "321312"
+        },
+        {
+          "id": 1583612718025,
+          "word": "2131312",
+          "translate": "3123",
+          "pronunciation": "321312"
+        },
+        {
+          "id": 1583612793100,
+          "word": "dasd",
+          "translate": "312",
+          "pronunciation": "1323"
+        }
+      ]
+    },
+    {
+      "id": 1583615591397,
+      "login": "Artem",
+      "words": [
+        {
+          "id": 1583615803803,
+          "word": "Fish",
+          "translate": "Рыба",
+          "pronunciation": "Фиш"
+        }
+      ]
+    }
+  ]
+}
