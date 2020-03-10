@@ -13,6 +13,13 @@
       "password": "123",
       "isAdmin": false,
       "id": 1583615591397
+    },
+    {
+      "name": "dasdsa",
+      "login": "admin",
+      "password": "123",
+      "isAdmin": true,
+      "id": 1583661533568
     }
   ],
   "dictionary": [
@@ -21,16 +28,29 @@
       "login": "user",
       "words": [
         {
-          "id": 1583611477108,
-          "word": "t",
-          "translate": "t",
-          "pronunciation": "t"
+          "id": 1583612006275,
+          "word": "Car",
+          "translate": "Машина",
+          "pronunciation": "Кар",
+          "propnunciation": "Кар"
+        },
+        {
+          "id": 1583612501574,
+          "word": "Sun",
+          "translate": "Солнце",
+          "pronunciation": "Сан"
         },
         {
           "id": 1583611705516,
           "word": "fish",
-          "translate": "213",
-          "pronunciation": "3123"
+          "translate": "Рыба",
+          "pronunciation": "Фиш"
+        },
+        {
+          "id": 1583612446358,
+          "word": "Дом",
+          "translate": "312",
+          "pronunciation": "вфывф"
         },
         {
           "id": 1583611921360,
@@ -43,60 +63,6 @@
           "word": "й",
           "translate": "й",
           "pronunciation": "й"
-        },
-        {
-          "id": 1583612006275,
-          "word": "1",
-          "translate": "1",
-          "pronunciation": "1"
-        },
-        {
-          "id": 1583612052655,
-          "word": "2",
-          "translate": "3",
-          "pronunciation": "4"
-        },
-        {
-          "id": 1583612446358,
-          "word": "Дом",
-          "translate": "312",
-          "pronunciation": "вфывф"
-        },
-        {
-          "id": 1583612472142,
-          "word": "3123",
-          "translate": "вфы",
-          "pronunciation": "чяся"
-        },
-        {
-          "id": 1583612501574,
-          "word": "3123",
-          "translate": "вфы",
-          "pronunciation": "чяся"
-        },
-        {
-          "id": 1583612535077,
-          "word": "1",
-          "translate": "1",
-          "pronunciation": "1"
-        },
-        {
-          "id": 1583612712883,
-          "word": "2131312",
-          "translate": "3123",
-          "pronunciation": "321312"
-        },
-        {
-          "id": 1583612718025,
-          "word": "2131312",
-          "translate": "3123",
-          "pronunciation": "321312"
-        },
-        {
-          "id": 1583612793100,
-          "word": "dasd",
-          "translate": "312",
-          "pronunciation": "1323"
         }
       ]
     },
@@ -105,12 +71,77 @@
       "login": "Artem",
       "words": [
         {
+          "id": 1583757357659,
+          "word": "Apple",
+          "translate": "Яблоко",
+          "pronunciation": "Эпл"
+        },
+        {
+          "id": 1583756178607,
+          "word": "Arrow",
+          "translate": "Стрела",
+          "pronunciation": "Эрроу"
+        },
+        {
+          "id": 1583758640806,
+          "word": "Bind",
+          "translate": "Крючок",
+          "pronunciation": "Байнд"
+        },
+        {
+          "id": 1583838577720,
+          "word": "Cat",
+          "translate": "Кот",
+          "pronunciation": "Кэт"
+        },
+        {
+          "id": 1583838565063,
+          "word": "Chiken",
+          "translate": "Курица",
+          "pronunciation": "Чикен"
+        },
+        {
           "id": 1583615803803,
           "word": "Fish",
           "translate": "Рыба",
           "pronunciation": "Фиш"
+        },
+        {
+          "id": 1583837197259,
+          "word": "Table",
+          "translate": "Стол",
+          "pronunciation": "Тэйбл"
+        },
+        {
+          "id": 1583757512141,
+          "word": "War",
+          "translate": "Война",
+          "pronunciation": "Воар"
+        },
+        {
+          "id": 1583665124339,
+          "word": "Witcher",
+          "translate": "Ведьмак",
+          "pronunciation": "Витчер"
+        },
+        {
+          "id": 1583758583078,
+          "word": "Zoom",
+          "translate": "Увеличение",
+          "pronunciation": "Зум"
+        },
+        {
+          "id": 1583838587119,
+          "word": "Dog",
+          "translate": "Собака",
+          "pronunciation": "Дог"
         }
       ]
+    },
+    {
+      "id": 1583661533568,
+      "login": "admin",
+      "words": []
     }
   ]
 }

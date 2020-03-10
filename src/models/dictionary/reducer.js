@@ -27,6 +27,9 @@ const dictionaryReducer = createSlice({
     setMsg(state, { payload }) {
       state.msg = payload;
     },
+    updateField(state, { payload }) {
+      state.dictionary = payload;
+    },
   },
 });
 
@@ -36,4 +39,5 @@ export const {
   setDictionary,
   addNewWord,
   setMsg,
+  updateField,
 } = dictionaryReducer.actions;

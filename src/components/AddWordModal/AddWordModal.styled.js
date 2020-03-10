@@ -8,7 +8,7 @@ export default {
     left: 0;
     right: 0;
     background-color: ${({ isAnim }) => !isAnim && 'rgba(0, 0, 0, 0);'};
-    transition: ${({ speedAnim }) => `background-color ${speedAnim} ease-in;`};
+    transition: ${({ speedAnim }) => `background-color ${speedAnim} linear;`};
     z-index: 1000;
     overflow: hidden;
 
@@ -25,7 +25,7 @@ export default {
     background-color: #fff;
     margin: 0 auto;
     transform: ${({ isAnim }) => !isAnim && 'translateY(-450px);'};
-    transition: ${({ speedAnim }) => `transform ${speedAnim} ease-in;`};
+    transition: ${({ speedAnim }) => `transform ${speedAnim} linear;`};
 
     &.show {
       transform: ${({ isAnim }) => isAnim && 'translateY(100px);'};
@@ -52,6 +52,7 @@ export default {
     display: flex;
     justify-content: space-around;
     align-items: center;
+    padding-bottom: 10px;
   `,
   Message: styled.div`
     line-height: 2;

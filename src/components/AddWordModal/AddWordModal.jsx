@@ -46,8 +46,8 @@ const AddWordModal = ({ id, login, nameClass, toggle }) => {
   };
 
   const hideWindow = e => {
-    e.preventDefault();
     if (e.target.dataset.close === 'true' || e.key === 'Escape') {
+      e.preventDefault();
       setAnimated(false);
       setTimeout(() => toggle(), 200);
     }

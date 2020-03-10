@@ -16,8 +16,10 @@ export const getFilteredWords = createSelector(
   [getWords, getIds],
   (entities, ids) => {
     return memoize(search => {
-      return ids.filter(id =>
-        entities[id].word.toLowerCase().includes(search.toLowerCase())
+      return ids.filter(
+        id =>
+          entities[id].word.toLowerCase().includes(search.toLowerCase()) ||
+          entities[id].translate.toLowerCase().includes(search.toLowerCase())
       );
     });
   }

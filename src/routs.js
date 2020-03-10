@@ -1,7 +1,7 @@
 import routes from 'constants/routes';
 import AuthPage from 'pages/AuthPage';
 import RegisterPage from 'pages/RegisterPage';
-import Dictionary from 'pages/Dictionary';
+import DictionaryPage from 'pages/DictionaryPage';
 
 export default [
   {
@@ -19,14 +19,14 @@ export default [
   {
     path: routes.dictionary,
     exact: true,
-    component: Dictionary,
+    component: DictionaryPage,
     isAuth: true,
     isAdmin: false,
   },
   {
     path: routes.edit,
     exact: true,
-    component: Dictionary,
+    component: DictionaryPage,
     isAuth: true,
     isAdmin: true,
   },

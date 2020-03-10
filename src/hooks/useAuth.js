@@ -4,9 +4,11 @@ import { LOGIN_USER } from 'models/user/action';
 import useSelector from 'hooks/useSelector';
 import useAction from 'hooks/useAction';
 import { logoutUser } from 'models/user/reducer';
+import { setDictionary } from 'models/dictionary/reducer';
 
 const useAuth = () => {
   const isAuth = useSelector(getAuth);
+  const resetDictionary = useAction(setDictionary);
   const [data, setData] = useState(
     JSON.parse(localStorage.getItem('user')) || { isAuth: false, user: null }
   );
@@ -20,6 +22,10 @@ const useAuth = () => {
   const logoutClick = useCallback(() => {
     setData({ isAuth: false, user: null });
     localStorage.removeItem('user');
+    resetDictionary({
+      entities: [],
+      ids: [],
+    });
     logout();
   }, []);
 

@@ -1,21 +1,27 @@
-import { ADD_WORD, GET_DICTIONARY } from 'models/dictionary/action';
+import {
+  ADD_WORD,
+  GET_DICTIONARY,
+  REMOVE_WORD,
+  UPDATE_FIELD_WORD,
+} from 'models/dictionary/action';
 import { takeEvery, call, put } from '@redux-saga/core/effects';
 import { addWord, getDictionary } from 'api/api';
-import { normalize, schema } from 'normalizr';
 import {
   addNewWord,
   setDictionary,
   setLoading,
   setMsg,
+  updateField,
 } from 'models/dictionary/reducer';
 import { denormalized } from 'utils/denormalized';
+import { normalized } from 'utils/normalized';
+import { removePropFromObject } from 'utils/removePropFromObject';
+import { removeArrayElement } from 'utils/removeArrayElement';
 
 function* getDict(action) {
   try {
     const { data } = yield call(getDictionary, action.payload);
-    const dictionarySchema = new schema.Entity('dictionary');
-    const dictionary = [dictionarySchema];
-    const dataNormalized = normalize(data[0].words, dictionary);
+    const dataNormalized = normalized(data[0].words);
     yield put({
       type: setDictionary,
       payload: {
@@ -51,7 +57,51 @@ function* addWordToDict(action) {
   }
 }
 
+function* updateFieldWord(action) {
+  try {
+    const { userId, login, value, field, ids, editId } = action.payload;
+    let { entities } = action.payload;
+    entities = {
+      ...entities,
+      [editId]: { ...entities[editId], [field]: value },
+    };
+    const { words } = yield call(denormalized, entities, ids);
+    yield call(addWord, { id: userId, login, words });
+    yield put({
+      type: updateField,
+      payload: {
+        entities,
+        ids,
+      },
+    });
+  } catch (e) {
+    console.log(e);
+  }
+}
+
+function* deleteWord(action) {
+  try {
+    const { userId, login, id } = action.payload;
+    let { entities, ids } = action.payload;
+    entities = removePropFromObject(entities, id);
+    ids = removeArrayElement(ids, id);
+    const { words } = yield call(denormalized, entities, ids);
+    yield call(addWord, { id: userId, login, words });
+    yield put({
+      type: updateField,
+      payload: {
+        entities,
+        ids,
+      },
+    });
+  } catch (e) {
+    console.log(e);
+  }
+}
+
 export default function* rootSagaDictionary() {
   yield takeEvery(GET_DICTIONARY, getDict);
   yield takeEvery(ADD_WORD, addWordToDict);
+  yield takeEvery(UPDATE_FIELD_WORD, updateFieldWord);
+  yield takeEvery(REMOVE_WORD, deleteWord);
 }
