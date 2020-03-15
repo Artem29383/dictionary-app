@@ -1,6 +1,9 @@
 import styled from 'styled-components/macro';
 
 export default {
+  DivTable: styled.div`
+    width: 100%;
+  `,
   TableWrap: styled.div`
     max-width: 800px;
     width: 100%;

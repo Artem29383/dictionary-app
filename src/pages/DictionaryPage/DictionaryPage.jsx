@@ -21,6 +21,7 @@ import { useInput } from 'hooks/useInput';
 import TableSearch from 'components/TableSearch';
 import { chunks } from 'utils/chunks';
 import Paginate from 'components/Paginate';
+import SelectOption from 'components/SelectOption';
 import S from './DictionaryPage.styled';
 
 const DictionaryPage = ({ user }) => {
@@ -31,11 +32,12 @@ const DictionaryPage = ({ user }) => {
   const setDict = useAction(setDictionary);
   const [currentPage, setCurrentPage] = useState(0);
   const ids = useSelector(getIdsSelector);
+  const [elemCountsOnPage, setElemCountsOnPage] = useState(10);
   const [sort, setSort] = useState('asc');
   const [value, setValue] = useInput('');
   const filteredIds = useSelector(getFilteredWords)(value);
   const [showModal, setShowModal] = useToggle(false);
-  const chunksArray = chunks(filteredIds, 20);
+  const [chunksArray, setChunksArray] = useState([]);
   const chunkArrayLength = chunksArray.length;
 
   const onSort = (sortCol, initSort) => {
@@ -49,22 +51,6 @@ const DictionaryPage = ({ user }) => {
     setSort(initSort || sortType);
   };
 
-  const prevPageHandler = () => {
-    if (currentPage - 1 >= 0) {
-      setCurrentPage(currentPage - 1);
-    }
-  };
-
-  const nextPageHandler = () => {
-    if (currentPage + 1 <= chunkArrayLength - 1) {
-      setCurrentPage(currentPage + 1);
-    }
-  };
-
-  const pageChangeHandler = e => {
-    setCurrentPage(Number(e.currentTarget.innerText - 1));
-  };
-
   useEffect(() => {
     onSort('word', 'asc');
   }, [ids.length]);
@@ -76,6 +62,15 @@ const DictionaryPage = ({ user }) => {
     }
   }, []);
 
+  useEffect(() => {
+    setChunksArray(chunks(filteredIds, elemCountsOnPage));
+    setCurrentPage(0);
+  }, [elemCountsOnPage, filteredIds]);
+
+  const choosePageSizeHandler = e => {
+    setElemCountsOnPage(Number(e.currentTarget.innerText));
+  };
+
   return (
     <S.Content>
       <TableSearch
@@ -83,6 +78,12 @@ const DictionaryPage = ({ user }) => {
         value={value}
         onChange={setValue}
         label="Поиск"
+      />
+      <SelectOption
+        choosePageSizeHandler={choosePageSizeHandler}
+        elemCountsOnPage={elemCountsOnPage}
+        arrayOptions={[10, 50, 100]}
+        text="Элементов на странице"
       />
       {isLoading ? (
         <Loader />
@@ -98,11 +99,9 @@ const DictionaryPage = ({ user }) => {
       )}
       {chunkArrayLength > 1 ? (
         <Paginate
-          pageChangeHandler={pageChangeHandler}
-          currentPage={currentPage}
+          currentPage={currentPage + 1}
           chunkArrayLength={chunkArrayLength}
-          prevPageHandler={prevPageHandler}
-          nextPageHandler={nextPageHandler}
+          setCurrentPage={setCurrentPage}
         />
       ) : null}
       <S.BtnPos>

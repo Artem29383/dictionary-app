@@ -16,29 +16,31 @@ const Table = ({ userId, login, words, ids, sort, sortType }) => {
   ));
 
   return (
-    <S.TableWrap>
-      <S.Table>
-        <thead>
-          <tr>
-            <S.Th onClick={() => sort('word')}>
-              Слова {sortType === 'asc' ? '▼' : '▲'}
-            </S.Th>
-            <S.Th>Перевод</S.Th>
-            <S.Th>Произношение</S.Th>
-            <S.Th>Удаление</S.Th>
-          </tr>
-        </thead>
-        <tbody>
-          {words ? (
-            tableWords
-          ) : (
-            <S.TrText>
-              <S.ThText>Словарь пуст</S.ThText>
-            </S.TrText>
-          )}
-        </tbody>
-      </S.Table>
-    </S.TableWrap>
+    <S.DivTable>
+      <S.TableWrap>
+        <S.Table>
+          <thead>
+            <tr>
+              <S.Th onClick={() => sort('word')}>
+                Слова {sortType === 'asc' ? '▼' : '▲'}
+              </S.Th>
+              <S.Th>Перевод</S.Th>
+              <S.Th>Произношение</S.Th>
+              <S.Th>Удаление</S.Th>
+            </tr>
+          </thead>
+          <tbody>
+            {words ? (
+              tableWords
+            ) : (
+              <S.TrText>
+                <S.ThText>Словарь пуст</S.ThText>
+              </S.TrText>
+            )}
+          </tbody>
+        </S.Table>
+      </S.TableWrap>
+    </S.DivTable>
   );
 };
 

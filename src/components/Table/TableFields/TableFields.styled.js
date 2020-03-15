@@ -14,11 +14,11 @@ export default {
     font-size: 15px;
     color: inherit;
     line-height: 1.4;
+    position: relative;
     vertical-align: middle;
     font-family: Light, serif;
     padding-top: 16px;
     padding-bottom: 16px;
-    cursor: pointer;
 
     &.red {
       color: red;
@@ -30,5 +30,8 @@ export default {
     height: 100%;
     justify-content: center;
     align-content: center;
+  `,
+  Text: styled.span`
+    cursor: pointer;
   `,
 };

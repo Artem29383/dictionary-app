@@ -8,6 +8,7 @@ const userReducer = createSlice({
     user: [],
     msgError: '',
     msgSuccess: '',
+    isInit: false,
   },
   reducers: {
     logoutUser(state) {
@@ -23,6 +24,9 @@ const userReducer = createSlice({
     registerUserSuccess(state, { payload }) {
       state.msgSuccess = payload;
     },
+    setInit(state, { payload }) {
+      state.isInit = payload;
+    },
   },
 });
 
@@ -32,6 +36,7 @@ export const {
   loginUserFailure,
   loginUserSuccess,
   registerUserSuccess,
+  setInit,
 } = userReducer.actions;
 
 //

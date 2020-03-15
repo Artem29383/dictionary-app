@@ -28,25 +28,6 @@
       "login": "user",
       "words": [
         {
-          "id": 1583612006275,
-          "word": "Car",
-          "translate": "Машина",
-          "pronunciation": "Кар",
-          "propnunciation": "Кар"
-        },
-        {
-          "id": 1583612501574,
-          "word": "Sun",
-          "translate": "Солнце",
-          "pronunciation": "Сан"
-        },
-        {
-          "id": 1583611705516,
-          "word": "fish",
-          "translate": "Рыба",
-          "pronunciation": "Фиш"
-        },
-        {
           "id": 1583612446358,
           "word": "Дом",
           "translate": "312",
@@ -89,6 +70,12 @@
           "pronunciation": "Байнд"
         },
         {
+          "id": 1584264315444,
+          "word": "Bread",
+          "translate": "Хлеб",
+          "pronunciation": "Брэд"
+        },
+        {
           "id": 1583838577720,
           "word": "Cat",
           "translate": "Кот",
@@ -96,9 +83,21 @@
         },
         {
           "id": 1583838565063,
-          "word": "Chiken",
+          "word": "Chicken",
           "translate": "Курица",
           "pronunciation": "Чикен"
+        },
+        {
+          "id": 1584114981434,
+          "word": "City",
+          "translate": "Город",
+          "pronunciation": "Сити"
+        },
+        {
+          "id": 1583838587119,
+          "word": "Dog",
+          "translate": "Собака",
+          "pronunciation": "Дог"
         },
         {
           "id": 1583615803803,
@@ -107,34 +106,22 @@
           "pronunciation": "Фиш"
         },
         {
-          "id": 1583837197259,
-          "word": "Table",
-          "translate": "Стол",
-          "pronunciation": "Тэйбл"
+          "id": 1584114971101,
+          "word": "Pig",
+          "translate": "Свинья",
+          "pronunciation": "Пиг"
         },
         {
-          "id": 1583757512141,
+          "id": 1584268321007,
           "word": "War",
           "translate": "Война",
-          "pronunciation": "Воар"
+          "pronunciation": "Вор"
         },
         {
-          "id": 1583665124339,
-          "word": "Witcher",
-          "translate": "Ведьмак",
-          "pronunciation": "Витчер"
-        },
-        {
-          "id": 1583758583078,
+          "id": 1584268304265,
           "word": "Zoom",
           "translate": "Увеличение",
           "pronunciation": "Зум"
-        },
-        {
-          "id": 1583838587119,
-          "word": "Dog",
-          "translate": "Собака",
-          "pronunciation": "Дог"
         }
       ]
     },

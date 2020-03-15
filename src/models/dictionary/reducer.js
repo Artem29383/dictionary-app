@@ -10,6 +10,7 @@ const dictionaryReducer = createSlice({
     },
     isLoading: false,
     msg: '',
+    wordsForTest: [],
   },
   reducers: {
     setLoading(state, { payload }) {
@@ -30,6 +31,9 @@ const dictionaryReducer = createSlice({
     updateField(state, { payload }) {
       state.dictionary = payload;
     },
+    fillArrayForTest(state, { payload }) {
+      state.wordsForTest = payload;
+    },
   },
 });
 
@@ -40,4 +44,5 @@ export const {
   addNewWord,
   setMsg,
   updateField,
+  fillArrayForTest,
 } = dictionaryReducer.actions;

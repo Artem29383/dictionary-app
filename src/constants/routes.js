@@ -1,6 +1,6 @@
 export default {
   dictionary: '/dictionary',
-  tests: '/tests',
+  controlWordsPage: '/controlWordsPage',
   auth: '/login',
   register: '/register',
   edit: '/edit',

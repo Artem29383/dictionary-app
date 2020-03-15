@@ -27,6 +27,13 @@ export const getFilteredWords = createSelector(
 
 const getMsg = state => state.dictionary.msg;
 
+const arrayForTest = state => state.dictionary.wordsForTest;
+
+export const arrayForTestSelector = createSelector(
+  arrayForTest,
+  wordsForTest => wordsForTest
+);
+
 export const getMsgSelector = createSelector(getMsg, msg => msg);
 
 export const getWordsSelector = createSelector(getWords, entities => entities);

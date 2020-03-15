@@ -78,7 +78,3 @@ const RegisterPage = () => {
   );
 };
 export default RegisterPage;
-
-// RegisterPage.propTypes = {
-//   logIn: PropTypes.func.isRequired,
-// };

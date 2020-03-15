@@ -1,46 +1,19 @@
-import { useState, useEffect, useCallback } from 'react';
-import { getAuth } from 'models/user/selectors';
-import { LOGIN_USER } from 'models/user/action';
+import { useEffect } from 'react';
+import { getAuth, getUserSelector } from 'models/user/selectors';
 import useSelector from 'hooks/useSelector';
 import useAction from 'hooks/useAction';
-import { logoutUser } from 'models/user/reducer';
-import { setDictionary } from 'models/dictionary/reducer';
+import { loginUserSuccess } from 'models/user/reducer';
 
 const useAuth = () => {
   const isAuth = useSelector(getAuth);
-  const resetDictionary = useAction(setDictionary);
-  const [data, setData] = useState(
-    JSON.parse(localStorage.getItem('user')) || { isAuth: false, user: null }
-  );
-  const logout = useAction(logoutUser);
-  const signIn = useAction(LOGIN_USER);
-
-  const loginClick = useCallback(({ login, password }) => {
-    signIn({ login, password });
-  }, []);
-
-  const logoutClick = useCallback(() => {
-    setData({ isAuth: false, user: null });
-    localStorage.removeItem('user');
-    resetDictionary({
-      entities: [],
-      ids: [],
-    });
-    logout();
-  }, []);
-
+  const user = useSelector(getUserSelector);
+  const login = useAction(loginUserSuccess);
   useEffect(() => {
     if (isAuth) {
-      setData(JSON.parse(localStorage.getItem('user')));
+      login({ isAuth, user });
     }
-  }, [isAuth, logoutClick]);
-
-  useEffect(() => {
-    if (JSON.parse(localStorage.getItem('user'))) {
-      setData(JSON.parse(localStorage.getItem('user')));
-    }
-  }, []);
-  return { data, logoutClick, loginClick };
+  }, [isAuth]);
+  return { isAuth, user };
 };
 
 export default useAuth;

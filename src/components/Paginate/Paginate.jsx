@@ -1,28 +1,37 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import { paginate } from 'utils/paginationPages';
 import S from './Paginate.styled';
 
-const Paginate = ({
-  pageChangeHandler,
-  currentPage,
-  chunkArrayLength,
-  prevPageHandler,
-  nextPageHandler,
-}) => {
-  const [pagesArray, setPagesArray] = useState(
-    chunkArrayLength > 2 ? [1, 2, 3, chunkArrayLength] : [1, chunkArrayLength]
-  );
+const Paginate = ({ currentPage, chunkArrayLength, setCurrentPage }) => {
+  const [pagesArray, setPagesArray] = useState([]);
   useEffect(() => {
-    if (currentPage >= 2 && currentPage + 2 < chunkArrayLength) {
-      setPagesArray([
-        1,
-        currentPage,
-        currentPage + 1,
-        currentPage + 2,
-        chunkArrayLength,
-      ]);
+    setPagesArray(paginate(chunkArrayLength, currentPage));
+  }, [currentPage, chunkArrayLength]);
+
+  const firstPage = () => {
+    setCurrentPage(0);
+  };
+
+  const lastPage = () => {
+    setCurrentPage(chunkArrayLength - 1);
+  };
+
+  const prevPageHandler = () => {
+    if (currentPage >= 2) {
+      setCurrentPage(currentPage - 2);
     }
-  }, [currentPage]);
+  };
+
+  const nextPageHandler = () => {
+    if (currentPage <= chunkArrayLength - 1) {
+      setCurrentPage(currentPage);
+    }
+  };
+
+  const pageChangeHandler = e => {
+    setCurrentPage(Number(e.currentTarget.innerText - 1));
+  };
   // eslint-disable-next-line array-callback-return,consistent-return
   const pages = pagesArray.map(page => {
     return (
@@ -30,7 +39,7 @@ const Paginate = ({
         onClick={pageChangeHandler}
         /* eslint-disable-next-line react/no-array-index-key */
         key={page}
-        className={currentPage + 1 === page && 'active'}
+        className={currentPage === page && 'active'}
       >
         {page}
       </S.PaginateLi>
@@ -39,9 +48,11 @@ const Paginate = ({
   return (
     <S.PaginateDiv>
       <S.PaginateUl>
+        <S.PaginateLi onClick={firstPage}>First</S.PaginateLi>
         <S.PaginateLi onClick={prevPageHandler}>{'<'}</S.PaginateLi>
         {pages}
         <S.PaginateLi onClick={nextPageHandler}>{'>'}</S.PaginateLi>
+        <S.PaginateLi onClick={lastPage}>Last</S.PaginateLi>
       </S.PaginateUl>
     </S.PaginateDiv>
   );
@@ -49,9 +60,7 @@ const Paginate = ({
 
 export default Paginate;
 Paginate.propTypes = {
-  pageChangeHandler: PropTypes.func.isRequired,
   currentPage: PropTypes.number.isRequired,
   chunkArrayLength: PropTypes.number.isRequired,
-  prevPageHandler: PropTypes.func.isRequired,
-  nextPageHandler: PropTypes.func.isRequired,
+  setCurrentPage: PropTypes.func.isRequired,
 };

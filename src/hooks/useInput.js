@@ -9,5 +9,7 @@ export const useInput = initValue => {
     [setValue]
   );
 
-  return [value, changeHandler];
+  const reset = useCallback(() => setValue(''), [setValue]);
+
+  return [value, changeHandler, reset];
 };

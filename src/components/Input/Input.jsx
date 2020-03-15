@@ -2,7 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import S, { InputField, Label } from './Input.styled';
 
-const Input = ({ label, value, onChange, register, name, type = 'text' }) => (
+const Input = ({
+  label,
+  value,
+  onChange,
+  register,
+  name,
+  type = 'text',
+  focus = false,
+  keyHandler,
+}) => (
   <S.Group>
     <InputField
       placeholder=" "
@@ -11,6 +20,8 @@ const Input = ({ label, value, onChange, register, name, type = 'text' }) => (
       ref={register}
       name={name}
       type={type}
+      autoFocus={focus}
+      onKeyDown={keyHandler}
     />
     <Label>{label}</Label>
   </S.Group>
@@ -25,4 +36,6 @@ Input.propTypes = {
   register: PropTypes.func,
   name: PropTypes.string,
   type: PropTypes.string,
+  focus: PropTypes.bool,
+  keyHandler: PropTypes.func,
 };

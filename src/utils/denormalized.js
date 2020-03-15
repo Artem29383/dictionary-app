@@ -4,6 +4,5 @@ export const denormalized = (entities, ids) => {
   const words = new schema.Entity('words');
   const mySchema = { words: [words] };
   const entitie = { words: entities };
-  const denormalizedData = denormalize({ words: ids }, mySchema, entitie);
-  return denormalizedData;
+  return denormalize({ words: ids }, mySchema, entitie);
 };

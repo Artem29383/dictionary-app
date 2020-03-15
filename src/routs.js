@@ -2,6 +2,7 @@ import routes from 'constants/routes';
 import AuthPage from 'pages/AuthPage';
 import RegisterPage from 'pages/RegisterPage';
 import DictionaryPage from 'pages/DictionaryPage';
+import ControlWordsPage from 'pages/ControlWordsPage';
 
 export default [
   {
@@ -29,5 +30,11 @@ export default [
     component: DictionaryPage,
     isAuth: true,
     isAdmin: true,
+  },
+  {
+    path: routes.controlWordsPage,
+    exact: true,
+    isAuth: true,
+    component: ControlWordsPage,
   },
 ];

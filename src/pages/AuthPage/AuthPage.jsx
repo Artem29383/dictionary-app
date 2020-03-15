@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import PropTypes from 'prop-types';
 import { useForm } from 'react-hook-form';
 import Input from 'components/Input/Input';
 import ButtonRipple from 'components/ButtonRipple';
@@ -8,9 +7,10 @@ import { getErrorSelector } from 'models/user/selectors';
 import useAction from 'hooks/useAction';
 import { loginUserFailure } from 'models/user/reducer';
 import routes from 'constants/routes';
+import { LOGIN_USER } from 'models/user/action';
 import S from './AuthPage.styled';
 
-const AuthPage = ({ logIn }) => {
+const AuthPage = () => {
   const { register, handleSubmit, errors, watch } = useForm({
     mode: 'onChange',
   });
@@ -18,8 +18,9 @@ const AuthPage = ({ logIn }) => {
   const error = useSelector(getErrorSelector);
   const watchLogin = watch('login');
   const watchPassword = watch('password');
+  const login = useAction(LOGIN_USER);
   const authHandler = data => {
-    logIn(data);
+    login(data);
   };
 
   useEffect(() => {
@@ -59,7 +60,3 @@ const AuthPage = ({ logIn }) => {
 };
 
 export default AuthPage;
-
-AuthPage.propTypes = {
-  logIn: PropTypes.func.isRequired,
-};
