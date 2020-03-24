@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
+import React, { useState } from 'react';
+// import PropTypes from 'prop-types';
 import InputEdit from 'components/InputEdit';
 import S from './NumberQuestion.styled';
 
-const NumberQuestion = ({ setResponse }) => {
+const NumberQuestion = () => {
   const [temp, setTemp] = useState('');
   const [value, setValue] = useState('Введите ответ');
   const [edit, setEdit] = useState(false);
@@ -11,10 +11,6 @@ const NumberQuestion = ({ setResponse }) => {
   const setValueHandler = e => {
     setValue(e.currentTarget.value);
   };
-
-  useEffect(() => {
-    return () => setResponse([]);
-  }, []);
 
   const startEdit = () => {
     setEdit(true);
@@ -24,7 +20,6 @@ const NumberQuestion = ({ setResponse }) => {
   const endEditBlur = () => {
     if (value.trim()) {
       setEdit(false);
-      setResponse(value);
     }
   };
 
@@ -36,7 +31,6 @@ const NumberQuestion = ({ setResponse }) => {
       }
       if (e.key === 'Enter') {
         setEdit(false);
-        setResponse(value);
       }
     }
   };
@@ -60,6 +54,6 @@ const NumberQuestion = ({ setResponse }) => {
 };
 
 export default NumberQuestion;
-NumberQuestion.propTypes = {
-  setResponse: PropTypes.func,
-};
+// NumberQuestion.propTypes = {
+//   setResponse: PropTypes.func,
+// };

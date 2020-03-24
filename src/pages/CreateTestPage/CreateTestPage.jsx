@@ -11,6 +11,10 @@ import S from './CreateTestPage.styled';
 const CreateTestPage = () => {
   const questionsIds = useSelector(getQuestionsIdsSelector);
   const pushQuest = useAction(pushQuestion);
+  
+  useEffect(() => {
+    return () => removeTest();
+  });
 
   useEffect(() => {
     pushQuest({

@@ -13,6 +13,11 @@ const testReducer = createSlice({
     setQuestName(state, { payload }) {
       state.questions.entities[payload.id].questName = payload.questionName;
     },
+    deleteTest(state) {
+      state.questions = {
+        entities: {}, ids: [],
+      }
+    },
     pushAnswer(state, { payload }) {
       const { id, qId, answer } = payload;
       state.questions.entities[id].answer = {
@@ -25,7 +30,7 @@ const testReducer = createSlice({
     },
     pushQuestion(state, { payload }) {
       const { id, answer, questName } = payload;
-      state.questions.entities[id] = { id, answer, questName };
+      state.questions.entities[id] = { answer, questName };
       state.questions.ids.push(id);
     },
     toggleChecked(state, { payload }) {

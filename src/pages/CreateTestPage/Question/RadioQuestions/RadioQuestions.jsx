@@ -24,7 +24,7 @@ const RadioQuestions = ({ name, entities, ids, id }) => {
     const uniqId = nanoid();
     const answer = {
       id: uniqId,
-      value: `answer${uniqId}`,
+      value: `Вариант ответа`,
       isChecked: false,
     };
     answerAdd({ id, qId: uniqId, answer });
