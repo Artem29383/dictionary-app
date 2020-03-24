@@ -3,6 +3,7 @@ import AuthPage from 'pages/AuthPage';
 import RegisterPage from 'pages/RegisterPage';
 import DictionaryPage from 'pages/DictionaryPage';
 import ControlWordsPage from 'pages/ControlWordsPage';
+import CreateTestPage from 'pages/CreateTestPage';
 
 export default [
   {
@@ -10,12 +11,14 @@ export default [
     exact: true,
     component: AuthPage,
     isAuth: false,
+    isAdmin: false,
   },
   {
     path: routes.register,
     exact: true,
     component: RegisterPage,
     isAuth: false,
+    isAdmin: false,
   },
   {
     path: routes.dictionary,
@@ -36,5 +39,13 @@ export default [
     exact: true,
     isAuth: true,
     component: ControlWordsPage,
+    isAdmin: false,
+  },
+  {
+    path: routes.createTest,
+    exact: true,
+    isAuth: true,
+    component: CreateTestPage,
+    isAdmin: false,
   },
 ];

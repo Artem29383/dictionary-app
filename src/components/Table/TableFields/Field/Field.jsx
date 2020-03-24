@@ -5,15 +5,17 @@ import { synthVoice } from 'utils/speech';
 import useAction from 'hooks/useAction';
 import { UPDATE_FIELD_WORD } from 'models/dictionary/action';
 import useToggle from 'hooks/useToggle';
+import useSelector from 'hooks/useSelector';
+import { getIdsSelector } from 'models/dictionary/selectors';
 import S from './Field.styled';
 
-const Field = ({ id, userId, login, words, f, ids }) => {
+const Field = ({ id, userId, login, words, f }) => {
   const updateField = useAction(UPDATE_FIELD_WORD);
   const [originalText, setOriginalText] = useState('');
   const [editId, setEditId] = useState(null);
+  const ids = useSelector(getIdsSelector);
   const [value, setValue] = useState('');
   const [edit, setEdit] = useToggle(false);
-
   const changeHandler = useCallback(
     e => {
       setValue(e.currentTarget.value);
@@ -93,7 +95,6 @@ export default Field;
 Field.propTypes = {
   id: PropTypes.number,
   words: PropTypes.any,
-  ids: PropTypes.array,
   userId: PropTypes.number,
   login: PropTypes.string,
   f: PropTypes.string,

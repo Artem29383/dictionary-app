@@ -94,6 +94,10 @@ function* deleteWord(action) {
         ids,
       },
     });
+    yield put({
+      type: setLoading,
+      payload: false,
+    });
   } catch (e) {
     console.log(e);
   }

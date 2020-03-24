@@ -7,6 +7,8 @@ const getWords = state => state.dictionary.dictionary.entities;
 
 const getIds = state => state.dictionary.dictionary.ids;
 
+export const getIdsSelector = createSelector(getIds, ids => ids);
+
 export const getLoadingSelector = createSelector(
   getLoading,
   isLoading => isLoading
@@ -37,5 +39,3 @@ export const arrayForTestSelector = createSelector(
 export const getMsgSelector = createSelector(getMsg, msg => msg);
 
 export const getWordsSelector = createSelector(getWords, entities => entities);
-
-export const getIdsSelector = createSelector(getIds, ids => ids);

@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import Input from 'components/Input/Input';
 import ButtonRipple from 'components/ButtonRipple';
 import useSelector from 'hooks/useSelector';
+import * as yup from 'yup';
 import { getErrorSelector } from 'models/user/selectors';
 import useAction from 'hooks/useAction';
 import { loginUserFailure } from 'models/user/reducer';
@@ -11,8 +12,13 @@ import { LOGIN_USER } from 'models/user/action';
 import S from './AuthPage.styled';
 
 const AuthPage = () => {
+  const loginSchema = yup.object().shape({
+    login: yup.string().required('Введите логин'),
+    password: yup.string().required('Введите пароль'),
+  });
   const { register, handleSubmit, errors, watch } = useForm({
     mode: 'onChange',
+    validationSchema: loginSchema,
   });
   const setError = useAction(loginUserFailure);
   const error = useSelector(getErrorSelector);
@@ -36,8 +42,8 @@ const AuthPage = () => {
           label="Логин"
           name="login"
           register={register({ required: true })}
+          errors={errors.login}
         />
-        {errors.login && <S.Error>Поле обязательно к заполнению</S.Error>}
       </S.WrapInput>
       <S.WrapInput>
         <Input
@@ -45,8 +51,8 @@ const AuthPage = () => {
           name="password"
           type="password"
           register={register({ required: true })}
+          errors={errors.password}
         />
-        {errors.password && <S.Error>Поле обязательно к заполнению</S.Error>}
       </S.WrapInput>
       <S.WrapInput className="margin10">
         <ButtonRipple className="center">Авторизация</ButtonRipple>

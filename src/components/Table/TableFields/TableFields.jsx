@@ -4,11 +4,16 @@ import S from 'components/Table/TableFields/TableFields.styled';
 import useAction from 'hooks/useAction';
 import { REMOVE_WORD } from 'models/dictionary/action';
 import Field from 'components/Table/TableFields/Field';
+import { setLoading } from 'models/dictionary/reducer';
+import useSelector from 'hooks/useSelector';
+import { getIdsSelector } from 'models/dictionary/selectors';
 
-const TableFields = ({ id, words, ids, userId, login }) => {
+const TableFields = ({ id, words, userId, login }) => {
+  const setLoad = useAction(setLoading);
   const removeWord = useAction(REMOVE_WORD);
-
+  const ids = useSelector(getIdsSelector);
   const deleteWord = e => {
+    setLoad(true);
     removeWord({
       id: Number(e.currentTarget.dataset.id),
       login,
@@ -51,7 +56,6 @@ export default TableFields;
 TableFields.propTypes = {
   id: PropTypes.number,
   words: PropTypes.any,
-  ids: PropTypes.array,
   userId: PropTypes.number,
   login: PropTypes.string,
 };

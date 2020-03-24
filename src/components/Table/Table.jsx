@@ -5,14 +5,7 @@ import S from './Table.styled';
 
 const Table = ({ userId, login, words, ids, sort, sortType }) => {
   const tableWords = ids.map(id => (
-    <TableFields
-      key={id}
-      id={id}
-      words={words}
-      ids={ids}
-      userId={userId}
-      login={login}
-    />
+    <TableFields key={id} id={id} words={words} userId={userId} login={login} />
   ));
 
   return (

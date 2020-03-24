@@ -5,6 +5,7 @@ import { connectRouter, routerMiddleware } from 'connected-react-router';
 import { createBrowserHistory } from 'history';
 import authReducer from 'models/user/reducer';
 import dictionaryReducer from 'models/dictionary/reducer';
+import testReducer from 'models/test/reducer';
 import { rootSaga } from './rootSaga';
 
 export const history = createBrowserHistory();
@@ -14,6 +15,7 @@ const isDev = process.env.NODE_ENV === 'development';
 const reducer = combineReducers({
   auth: authReducer,
   dictionary: dictionaryReducer,
+  test: testReducer,
   router: connectRouter(history),
 });
 

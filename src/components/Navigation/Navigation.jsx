@@ -31,6 +31,11 @@ const Navigation = () => {
           <ButtonRipple className="green">Тест</ButtonRipple>
         </S.Link>
       </S.NavItem>
+      <S.NavItem className="padding">
+        <S.Link to={routes.createTest}>
+          <ButtonRipple className="green">Создать тест</ButtonRipple>
+        </S.Link>
+      </S.NavItem>
       <S.NavItem className="right">
         <ButtonRipple onClick={logoutClick} className="red">
           Выйти

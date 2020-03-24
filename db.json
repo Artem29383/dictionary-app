@@ -52,73 +52,61 @@
       "login": "Artem",
       "words": [
         {
-          "id": 1583757357659,
-          "word": "Apple",
-          "translate": "Яблоко",
-          "pronunciation": "Эпл"
+          "id": 1584957113524,
+          "word": "Beer",
+          "translate": "Пиво",
+          "pronunciation": "Бир"
         },
         {
-          "id": 1583756178607,
-          "word": "Arrow",
-          "translate": "Стрела",
-          "pronunciation": "Эрроу"
-        },
-        {
-          "id": 1583758640806,
-          "word": "Bind",
-          "translate": "Крючок",
-          "pronunciation": "Байнд"
-        },
-        {
-          "id": 1584264315444,
-          "word": "Bread",
-          "translate": "Хлеб",
-          "pronunciation": "Брэд"
-        },
-        {
-          "id": 1583838577720,
+          "id": 1584957197271,
           "word": "Cat",
           "translate": "Кот",
           "pronunciation": "Кэт"
         },
         {
-          "id": 1583838565063,
-          "word": "Chicken",
-          "translate": "Курица",
-          "pronunciation": "Чикен"
+          "id": 1584957180940,
+          "word": "Dictionary",
+          "translate": "Словарь",
+          "pronunciation": "Дикшионари"
         },
         {
-          "id": 1584114981434,
-          "word": "City",
-          "translate": "Город",
-          "pronunciation": "Сити"
+          "id": 1584957212178,
+          "word": "Frost",
+          "translate": "Лёд",
+          "pronunciation": "Фрост"
         },
         {
-          "id": 1583838587119,
-          "word": "Dog",
-          "translate": "Собака",
-          "pronunciation": "Дог"
+          "id": 1584957124105,
+          "word": "Love",
+          "translate": "Любовь",
+          "pronunciation": "Лав"
         },
         {
-          "id": 1583615803803,
-          "word": "Fish",
-          "translate": "Рыба",
-          "pronunciation": "Фиш"
+          "id": 1584957148339,
+          "word": "One",
+          "translate": "Один",
+          "pronunciation": "Ван"
         },
         {
-          "id": 1584114971101,
-          "word": "Pig",
-          "translate": "Свинья",
-          "pronunciation": "Пиг"
+          "id": 1584957161659,
+          "word": "Phone",
+          "translate": "Телефон",
+          "pronunciation": "Пфон"
         },
         {
-          "id": 1584268321007,
-          "word": "War",
-          "translate": "Война",
-          "pronunciation": "Вор"
+          "id": 1584957134434,
+          "word": "Sword",
+          "translate": "Меч",
+          "pronunciation": "Сворд"
         },
         {
-          "id": 1584268304265,
+          "id": 1584957103201,
+          "word": "World",
+          "translate": "Мир",
+          "pronunciation": "Ворлд"
+        },
+        {
+          "id": 1584957228588,
           "word": "Zoom",
           "translate": "Увеличение",
           "pronunciation": "Зум"

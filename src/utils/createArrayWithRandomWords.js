@@ -2,7 +2,7 @@ function randomInteger(min, max) {
   return Math.round(min - 0.5 + Math.random() * (max - min + 1));
 }
 
-export function createArrayWithRandomWords(array, maxWords) {
+export function createArrayWithRandomWords(array, maxWords, setMaxWords) {
   const newArray = [];
   let count = 0;
   const max = array.length - 1;
@@ -14,6 +14,7 @@ export function createArrayWithRandomWords(array, maxWords) {
     // eslint-disable-next-line no-param-reassign
     maxWords = max;
   }
+  setMaxWords(maxWords);
   while (count < maxWords) {
     const rand = randomInteger(0, max);
     // eslint-disable-next-line no-empty

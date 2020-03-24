@@ -4,4 +4,5 @@ export default {
   auth: '/login',
   register: '/register',
   edit: '/edit',
+  createTest: '/create',
 };

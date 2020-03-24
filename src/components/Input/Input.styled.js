@@ -44,5 +44,11 @@ export default {
       font-size: 14px;
     }
   `,
+  Error: styled.div`
+    margin: 10px 0;
+    color: red;
+    font-size: 16px;
+    text-align: center;
+  `,
 };
 /* stylelint-enable */

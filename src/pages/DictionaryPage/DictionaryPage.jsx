@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import Table from 'components/Table';
-import PropTypes from 'prop-types';
 import orderBy from 'lodash.orderby';
 import useAction from 'hooks/useAction';
 import { GET_DICTIONARY } from 'models/dictionary/action';
@@ -15,16 +14,18 @@ import {
 import Loader from 'components/Loader';
 import ButtonRipple from 'components/ButtonRipple';
 import useToggle from 'hooks/useToggle';
-import AddWordModal from 'components/AddWordModal';
 import { normalized } from 'utils/normalized';
 import { useInput } from 'hooks/useInput';
 import TableSearch from 'components/TableSearch';
 import { chunks } from 'utils/chunks';
 import Paginate from 'components/Paginate';
 import SelectOption from 'components/SelectOption';
+import AddWordModal from 'pages/DictionaryPage/AddWordModal';
+import { getUserSelector } from 'models/user/selectors';
 import S from './DictionaryPage.styled';
 
-const DictionaryPage = ({ user }) => {
+const DictionaryPage = () => {
+  const [user] = useSelector(getUserSelector);
   const getDictionary = useAction(GET_DICTIONARY);
   const setLoad = useAction(setLoading);
   const isLoading = useSelector(getLoadingSelector);
@@ -65,7 +66,7 @@ const DictionaryPage = ({ user }) => {
   useEffect(() => {
     setChunksArray(chunks(filteredIds, elemCountsOnPage));
     setCurrentPage(0);
-  }, [elemCountsOnPage, filteredIds]);
+  }, [elemCountsOnPage, filteredIds, ids.length]);
 
   const choosePageSizeHandler = e => {
     setElemCountsOnPage(Number(e.currentTarget.innerText));
@@ -122,6 +123,3 @@ const DictionaryPage = ({ user }) => {
 };
 
 export default DictionaryPage;
-DictionaryPage.propTypes = {
-  user: PropTypes.object.isRequired,
-};

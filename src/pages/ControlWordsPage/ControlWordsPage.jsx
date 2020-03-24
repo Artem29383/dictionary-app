@@ -19,7 +19,7 @@ import { Redirect } from 'react-router-dom';
 import S from './ControlWordsPage.styled';
 
 const ControlWordsPage = () => {
-  const maxWords = 10;
+  const [maxWords, setMaxWords] = useState(10);
   const [goodAnswer, setGoodAnswer] = useState(0);
   const [currentWord, setCurrentWord] = useState(0);
   const [word, setWord] = useState('');
@@ -41,7 +41,9 @@ const ControlWordsPage = () => {
   };
 
   useEffect(() => {
-    fillRandomWordsArray(createArrayWithRandomWords(ids, maxWords));
+    fillRandomWordsArray(
+      createArrayWithRandomWords(ids, maxWords, setMaxWords)
+    );
     return () => offTest();
   }, [ids]);
 
@@ -52,11 +54,13 @@ const ControlWordsPage = () => {
     setGoodAnswer(0);
     setStopTest();
     setTime(5);
-    fillRandomWordsArray(createArrayWithRandomWords(ids, maxWords));
+    fillRandomWordsArray(
+      createArrayWithRandomWords(ids, maxWords, setMaxWords)
+    );
   };
 
   const checkAnswer = e => {
-    if (e.key === 'Enter' || e.which === 1 || e === 'Enter') {
+    if (e.key === 'Enter' || e === 'Enter') {
       if (
         words[wordsForTest[currentWord]].word.toLowerCase() ===
         value.toLowerCase()
@@ -137,7 +141,9 @@ const ControlWordsPage = () => {
               </S.FormInputWrap>
             </S.FormBody>
             <S.FormFooter>
-              <ButtonRipple onClick={checkAnswer}>Проверить</ButtonRipple>
+              <ButtonRipple onClick={() => checkAnswer('Enter')}>
+                Проверить
+              </ButtonRipple>
               <ButtonRipple className="red" onClick={offTest}>
                 Прервать тест
               </ButtonRipple>

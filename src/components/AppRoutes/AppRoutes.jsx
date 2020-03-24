@@ -31,22 +31,24 @@ const AppRoutes = ({ data }) => {
                 path={path}
                 render={props => (
                   /* eslint-disable-next-line react/jsx-props-no-spreading */
-                  <Component {...props} user={user} />
+                  <Component {...props} />
                 )}
               />
             );
           }
-          return (
-            <Route
-              key={path}
-              exact={exact}
-              path={path}
-              render={props => (
-                /* eslint-disable-next-line react/jsx-props-no-spreading */
-                <Component {...props} user={user} />
-              )}
-            />
-          );
+          if (isAdmin === false) {
+            return (
+              <Route
+                key={path}
+                exact={exact}
+                path={path}
+                render={props => (
+                  /* eslint-disable-next-line react/jsx-props-no-spreading */
+                  <Component {...props} />
+                )}
+              />
+            );
+          }
         }
       })}
       <Redirect to={user.isAdmin ? routes.edit : routes.dictionary} />

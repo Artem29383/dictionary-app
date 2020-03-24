@@ -8,23 +8,29 @@ const Input = ({
   onChange,
   register,
   name,
-  type = 'text',
-  focus = false,
+  type,
+  focus,
   keyHandler,
+  errors,
+  blur,
 }) => (
-  <S.Group>
-    <InputField
-      placeholder=" "
-      value={value}
-      onChange={onChange}
-      ref={register}
-      name={name}
-      type={type}
-      autoFocus={focus}
-      onKeyDown={keyHandler}
-    />
-    <Label>{label}</Label>
-  </S.Group>
+  <>
+    <S.Group>
+      <InputField
+        placeholder=" "
+        value={value}
+        onChange={onChange}
+        ref={register}
+        name={name}
+        type={type}
+        autoFocus={focus}
+        onKeyDown={keyHandler}
+        onBlur={blur}
+      />
+      <Label>{label}</Label>
+    </S.Group>
+    {errors && <S.Error>{errors.message}</S.Error>}
+  </>
 );
 
 export default Input;
@@ -38,4 +44,11 @@ Input.propTypes = {
   type: PropTypes.string,
   focus: PropTypes.bool,
   keyHandler: PropTypes.func,
+  errors: PropTypes.object,
+  blur: PropTypes.func,
+};
+
+Input.defaultProps = {
+  type: 'text',
+  focus: false,
 };
