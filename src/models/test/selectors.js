@@ -19,8 +19,23 @@ export const getQuestSelector = createSelector(
   [getQuestionsSelector, getQuestionsIdsSelector],
   entities => {
     return memoize(dinamId => {
-      // eslint-disable-next-line array-callback-return,consistent-return
       return entities[dinamId];
     });
   }
+);
+
+export const getErrorMsgSelector = createSelector(
+  [getQuestionsSelector, getQuestionsIdsSelector],
+  entities => {
+    return memoize(dinamId => {
+      return entities[dinamId].errorMsg;
+    });
+  }
+);
+
+const getTestName = state => state.test.testName;
+
+export const getTestNameSelector = createSelector(
+  getTestName,
+  testName => testName
 );

@@ -7,18 +7,25 @@ import RadioQuestions from 'pages/CreateTestPage/Question/RadioQuestions';
 import NumberQuestion from 'pages/CreateTestPage/Question/NumberQuestion';
 import CheckBoxQuestions from 'pages/CreateTestPage/Question/CheckBoxQuestions';
 import useSelector from 'hooks/useSelector';
-import { getQuestSelector } from 'models/test/selectors';
+import { getErrorMsgSelector, getQuestSelector } from 'models/test/selectors';
 import useAction from 'hooks/useAction';
 import { setQuestName } from 'models/test/reducer';
+import Cross from 'components/Cross';
 import S from './Question.styled';
 
-const Question = ({ id }) => {
+const Question = ({ id, setIdQuestion, setShowModal }) => {
+  const errorMsg = useSelector(getErrorMsgSelector)(id);
   const [edit, setEdit] = useState(false);
   const quest = useSelector(getQuestSelector)(id);
   const [questionName, questionSetName] = useState(quest.questName);
   const [value, setValue] = useState('Один из списка');
   const nameRadio = nanoid();
   const setQuestionName = useAction(setQuestName);
+
+  const showModalHandler = () => {
+    setShowModal(true);
+    setIdQuestion(id);
+  };
 
   const startEdit = () => {
     setEdit(true);
@@ -47,7 +54,7 @@ const Question = ({ id }) => {
   };
 
   return (
-    <S.QuestionForm>
+    <S.QuestionForm isValid={errorMsg}>
       <S.QuestFormHeader>
         <S.QuestFormHeaderTitle>
           <S.WrapInput padding="0 20px 0 20px">
@@ -76,6 +83,15 @@ const Question = ({ id }) => {
             />
           </S.WrapInput>
         </S.QuestFormHeaderTitle>
+        <Cross
+          color="#80868b"
+          position="absolute"
+          top="-15px"
+          right="5px"
+          rotate="135deg"
+          hover
+          clickHandler={showModalHandler}
+        />
       </S.QuestFormHeader>
       <S.QuestFormBody>
         {value === 'Один из списка' && (
@@ -86,8 +102,17 @@ const Question = ({ id }) => {
             id={id}
           />
         )}
-        {value === 'Численный' && <NumberQuestion />}
-        {value === 'Несколько из списка' && <CheckBoxQuestions />}
+        {value === 'Численный' && <NumberQuestion id={id} />}
+        {value === 'Несколько из списка' && (
+          <CheckBoxQuestions
+            entities={quest.answer.entities}
+            ids={quest.answer.ids}
+            id={id}
+          />
+        )}
+        <S.WrapInput>
+          <S.Error>{errorMsg}</S.Error>
+        </S.WrapInput>
       </S.QuestFormBody>
     </S.QuestionForm>
   );
@@ -96,4 +121,6 @@ const Question = ({ id }) => {
 export default Question;
 Question.propTypes = {
   id: PropTypes.string,
+  setIdQuestion: PropTypes.func,
+  setShowModal: PropTypes.func,
 };

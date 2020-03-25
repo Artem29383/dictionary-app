@@ -3,22 +3,26 @@ import PropTypes from 'prop-types';
 import nanoid from 'nanoid';
 import RadioButton from 'pages/CreateTestPage/Question/RadioQuestions/RadioButton';
 import useAction from 'hooks/useAction';
-import { pushAnswer, removeTrash, toggleChecked } from 'models/test/reducer';
+import {
+  pushAnswer,
+  setInitialRadioOrCheckBox,
+  toggleChecked,
+} from 'models/test/reducer';
+import useCheckChangeQuest from 'hooks/useCheckChangeQuest';
 import S from './RadioQuestions.styled';
 
 const RadioQuestions = ({ name, entities, ids, id }) => {
   const answerAdd = useAction(pushAnswer);
   const [checkedId, setCheckedId] = useState('');
   const toggleRadio = useAction(toggleChecked);
-  const deletedTrash = useAction(removeTrash);
+  const setInitAnswer = useAction(setInitialRadioOrCheckBox);
+  const resetErrorChange = useCheckChangeQuest(id);
   const changeRadioHandler = e => {
     const radioId = e.currentTarget.id;
     setCheckedId(radioId);
     toggleRadio({ id, radioId, checkedId });
+    resetErrorChange(ids.length);
   };
-  useEffect(() => {
-    return () => deletedTrash(id);
-  }, []);
 
   const addAnswer = () => {
     const uniqId = nanoid();
@@ -28,10 +32,24 @@ const RadioQuestions = ({ name, entities, ids, id }) => {
       isChecked: false,
     };
     answerAdd({ id, qId: uniqId, answer });
+    resetErrorChange(ids.length + 1);
   };
 
   useEffect(() => {
-    addAnswer();
+    const uniqId = nanoid();
+    const answer = {
+      id: uniqId,
+      value: `Вариант ответа`,
+      isChecked: false,
+    };
+    setInitAnswer({
+      id,
+      qId: uniqId,
+      answer,
+      type: 'Один из нескольких',
+      isValid: false,
+      errorMsg: null,
+    });
   }, []);
 
   const radioVariable = ids.map(qId => {
@@ -42,8 +60,8 @@ const RadioQuestions = ({ name, entities, ids, id }) => {
         id={entities[qId].id}
         name={name}
         radioObject={entities[qId]}
-        checked={entities[qId].isChecked}
         changeHandler={changeRadioHandler}
+        setCheckedId={setCheckedId}
       />
     );
   });

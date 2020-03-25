@@ -4,6 +4,8 @@ export const Label = styled.label`
   position: relative;
   word-break: break-all;
   cursor: pointer;
+  max-width: 80%;
+  transition: color 250ms ease;
 
   &::before {
     position: absolute;
@@ -15,7 +17,8 @@ export const Label = styled.label`
     display: inline-block;
     width: 1.4em;
     height: 1.4em;
-    top: -0.2em;
+    top: 50%;
+    transform: translateY(-50%);
     margin-right: 1em;
     vertical-align: top;
     cursor: pointer;
@@ -39,6 +42,8 @@ export default {
     position: absolute;
 
     &:checked + ${Label} {
+      color: #2196f3;
+
       &::before {
         background-color: #3197ee;
         box-shadow: inset 0 0 0 4px #f4f4f4;

@@ -6,7 +6,8 @@ export default {
     width: 100%;
     padding: 20px 0;
     border-radius: ${theme.radius.google};
-    border: ${theme.border.google};
+    border: ${({ isValid }) =>
+      isValid ? theme.border.googleError : theme.border.google};
     margin: 25px 0;
     height: auto;
   `,
@@ -20,9 +21,10 @@ export default {
     width: 100%;
     display: flex;
     margin-bottom: 20px;
+    position: relative;
   `,
   QuestFormHeaderTitle: styled.div`
-    width: 50%;
+    width: 48%;
     height: 100%;
     display: flex;
     justify-content: center;
@@ -41,5 +43,13 @@ export default {
     cursor: pointer;
     border-radius: ${theme.radius.google};
     border: ${theme.border.google};
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  `,
+  Error: styled.div`
+    color: ${theme.error.main};
+    font-size: 24px;
+    text-align: center;
   `,
 };

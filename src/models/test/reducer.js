@@ -1,4 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { removePropFromObject } from 'utils/removePropFromObject';
+import { removeArrayElement } from 'utils/removeArrayElement';
 /* eslint-disable no-param-reassign */
 
 const testReducer = createSlice({
@@ -8,6 +10,7 @@ const testReducer = createSlice({
       entities: {},
       ids: [],
     },
+    testName: 'Очередной тест',
   },
   reducers: {
     setQuestName(state, { payload }) {
@@ -15,8 +18,9 @@ const testReducer = createSlice({
     },
     deleteTest(state) {
       state.questions = {
-        entities: {}, ids: [],
-      }
+        entities: {},
+        ids: [],
+      };
     },
     pushAnswer(state, { payload }) {
       const { id, qId, answer } = payload;
@@ -42,13 +46,63 @@ const testReducer = createSlice({
         ].isChecked = false;
       }
     },
-    removeTrash(state, { payload }) {
-      state.questions.entities[payload].answer.entities = {};
-      state.questions.entities[payload].answer.ids = [];
-    },
     updateFieldAnswer(state, { payload }) {
-      const { id, obj } = payload;
-      state.questions.entities[id].answer.entities[obj.id] = obj;
+      const { id, qId, value } = payload;
+      state.questions.entities[id].answer.entities[qId].value = value;
+    },
+    setNumericAnswer(state, { payload }) {
+      const { id, qId, value, isChecked, type, isValid, errorMsg } = payload;
+      state.questions.entities[id].type = type;
+      state.questions.entities[id].isValid = isValid;
+      state.questions.entities[id].errorMsg = errorMsg;
+      state.questions.entities[id].answer.entities = {
+        [qId]: { id: qId, value, isChecked },
+      };
+      state.questions.entities[id].answer.ids = [qId];
+    },
+    setInitialRadioOrCheckBox(state, { payload }) {
+      const { id, qId, answer, type, isValid, errorMsg } = payload;
+      state.questions.entities[id].type = type;
+      state.questions.entities[id].isValid = isValid;
+      state.questions.entities[id].errorMsg = errorMsg;
+      state.questions.entities[id].answer.entities = {
+        [qId]: answer,
+      };
+      state.questions.entities[id].answer.ids = [qId];
+    },
+    removeAnswerFromRadioOrCheckBox(state, { payload }) {
+      const { id, qId } = payload;
+      state.questions.entities[id].answer.entities = removePropFromObject(
+        state.questions.entities[id].answer.entities,
+        qId
+      );
+      state.questions.entities[id].answer.ids = removeArrayElement(
+        state.questions.entities[id].answer.ids,
+        qId
+      );
+    },
+    toggleCheckBox(state, { payload }) {
+      const { id, qId, isChecked } = payload;
+      state.questions.entities[id].answer.entities[qId].isChecked = !isChecked;
+    },
+    removeQuest(state, { payload }) {
+      state.questions.entities = removePropFromObject(
+        state.questions.entities,
+        payload
+      );
+      state.questions.ids = removeArrayElement(state.questions.ids, payload);
+    },
+    setTestName(state, { payload }) {
+      state.testName = payload;
+    },
+    setValidQuestion(state, { payload }) {
+      state.questions.entities[payload].isValid = true;
+      state.questions.entities[payload].errorMsg = null;
+    },
+    setQuestError(state, { payload }) {
+      const { id, errorMsg } = payload;
+      state.questions.entities[id].errorMsg = errorMsg;
+      state.questions.entities[id].isValid = false;
     },
   },
 });
@@ -58,7 +112,15 @@ export const {
   setQuestName,
   pushAnswer,
   toggleChecked,
-  removeTrash,
   pushQuestion,
   updateFieldAnswer,
+  deleteTest,
+  setNumericAnswer,
+  setInitialRadioOrCheckBox,
+  removeAnswerFromRadioOrCheckBox,
+  toggleCheckBox,
+  removeQuest,
+  setTestName,
+  setValidQuestion,
+  setQuestError,
 } = testReducer.actions;

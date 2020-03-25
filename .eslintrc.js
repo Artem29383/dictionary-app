@@ -1,6 +1,6 @@
 module.exports = {
   parser: "babel-eslint",
-  extends: ['airbnb', 'airbnb/hooks', 'prettier/react', 'plugin:prettier/recommended'],
+  extends: ['airbnb', 'prettier/react', 'plugin:prettier/recommended'],
   plugins: [
     "react",
     "prettier"
@@ -72,5 +72,6 @@ module.exports = {
     "Headers": true,
     "Request": true,
     "fetch": true
-  }
+  },
+  root: true,
 };

@@ -20,6 +20,10 @@ export const getDictionary = login => {
   return axios.get(`${baseURL}/dictionary?login=${login}`);
 };
 
+export const deployingTest = data => {
+  return axios.post(`${baseURL}/tests`, data);
+};
+
 export const addWord = data => {
   const { id } = data;
   return axios.put(`${baseURL}/dictionary/${id}`, data);

@@ -26,5 +26,6 @@ export default {
   },
   border: {
     google: '1px solid #80868b',
+    googleError: '2px solid #f44336',
   },
 };

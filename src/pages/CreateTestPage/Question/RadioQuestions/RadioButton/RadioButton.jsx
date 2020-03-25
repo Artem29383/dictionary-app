@@ -3,21 +3,26 @@ import PropTypes from 'prop-types';
 import Edit from 'components/Edit/Edit';
 import InputEdit from 'components/InputEdit';
 import useAction from 'hooks/useAction';
-import { updateFieldAnswer } from 'models/test/reducer';
+import {
+  removeAnswerFromRadioOrCheckBox,
+  updateFieldAnswer,
+} from 'models/test/reducer';
+import Cross from 'components/Cross';
 import S, { Label } from './RadioButton.styled';
 
 const RadioButton = ({
   id,
   name,
   radioObject,
-  checked,
   changeHandler,
   questionId,
+  setCheckedId,
 }) => {
   const [radioLabel, setRadioLabel] = useState(radioObject.value);
   const [edit, setEdit] = useState(false);
   const [isError, setIsError] = useState(false);
   const updateField = useAction(updateFieldAnswer);
+  const removeAnswer = useAction(removeAnswerFromRadioOrCheckBox);
 
   const changeRadioLabelHandler = e => {
     setRadioLabel(e.currentTarget.value);
@@ -33,8 +38,7 @@ const RadioButton = ({
   const endEditBlur = () => {
     if (radioLabel.trim()) {
       setEdit(false);
-      const copyObj = { ...radioObject, value: radioLabel };
-      updateField({ id: questionId, obj: copyObj });
+      updateField({ id: questionId, qId: id, value: radioLabel });
     }
   };
 
@@ -45,9 +49,13 @@ const RadioButton = ({
     }
     if (e.key === 'Enter' && radioLabel.trim()) {
       setEdit(false);
-      const copyObj = { ...radioObject, value: radioLabel };
-      updateField({ id: questionId, obj: copyObj });
+      updateField({ id: questionId, qId: id, value: radioLabel });
     }
+  };
+
+  const deleteAnswer = () => {
+    removeAnswer({ id: questionId, qId: id });
+    setCheckedId(null);
   };
 
   return (
@@ -68,12 +76,18 @@ const RadioButton = ({
             id={id}
             name={name}
             type="radio"
-            checked={checked}
+            checked={radioObject.isChecked}
             value={radioLabel}
             onChange={changeHandler}
           />
           <Label htmlFor={id}>{radioLabel}</Label>
           <Edit editHandler={startEdit} />
+          <Cross
+            color="#80868b"
+            rotate="135deg"
+            clickHandler={deleteAnswer}
+            hover
+          />
         </>
       )}
     </S.Radio>
@@ -85,11 +99,7 @@ RadioButton.propTypes = {
   id: PropTypes.string,
   name: PropTypes.string,
   radioObject: PropTypes.object,
-  checked: PropTypes.bool,
   changeHandler: PropTypes.func,
   questionId: PropTypes.string,
-};
-
-RadioButton.defaultProps = {
-  checked: false,
+  setCheckedId: PropTypes.func,
 };

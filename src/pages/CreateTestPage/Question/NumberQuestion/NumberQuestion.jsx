@@ -1,16 +1,30 @@
-import React, { useState } from 'react';
-// import PropTypes from 'prop-types';
+import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
+import nanoid from 'nanoid';
 import InputEdit from 'components/InputEdit';
+import { setNumericAnswer } from 'models/test/reducer';
+import useAction from 'hooks/useAction';
 import S from './NumberQuestion.styled';
 
-const NumberQuestion = () => {
+const NumberQuestion = ({ id }) => {
   const [temp, setTemp] = useState('');
+  const [qId, setQId] = useState(null);
   const [value, setValue] = useState('Введите ответ');
   const [edit, setEdit] = useState(false);
-
+  const setNumeric = useAction(setNumericAnswer);
   const setValueHandler = e => {
     setValue(e.currentTarget.value);
   };
+
+  useEffect(() => {
+    setQId(nanoid());
+  }, []);
+
+  useEffect(() => {
+    if (qId) {
+      setNumeric({ id, qId, value, isChecked: true, type: 'Численный' });
+    }
+  }, [qId]);
 
   const startEdit = () => {
     setEdit(true);
@@ -20,6 +34,7 @@ const NumberQuestion = () => {
   const endEditBlur = () => {
     if (value.trim()) {
       setEdit(false);
+      setNumeric({ id, qId, value, isChecked: true, type: 'Численный' });
     }
   };
 
@@ -31,6 +46,15 @@ const NumberQuestion = () => {
       }
       if (e.key === 'Enter') {
         setEdit(false);
+        setNumeric({
+          id,
+          qId,
+          value,
+          isChecked: true,
+          type: 'Численный',
+          isValid: false,
+          errorMsg: null,
+        });
       }
     }
   };
@@ -54,6 +78,6 @@ const NumberQuestion = () => {
 };
 
 export default NumberQuestion;
-// NumberQuestion.propTypes = {
-//   setResponse: PropTypes.func,
-// };
+NumberQuestion.propTypes = {
+  id: PropTypes.string,
+};

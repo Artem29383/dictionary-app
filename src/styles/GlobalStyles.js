@@ -112,8 +112,8 @@ export const GlobalStyles = createGlobalStyle`
 
   body {
     line-height: 1;
-    height: 100%;
     width: 100%;
+    min-height: 100%;
   }
 
   a:active,
@@ -192,6 +192,7 @@ export const GlobalStyles = createGlobalStyle`
   
   body {
     margin: 0;
+    height: 100%;
     width: 100%;
     color: #000;
     font-family: Medium;

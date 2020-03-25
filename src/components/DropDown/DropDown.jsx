@@ -4,7 +4,7 @@ import S from './DropDown.styled';
 
 const DropDown = ({ options, value, setValue }) => {
   const [showDropDown, setShowDropDown] = useState(false);
-  const [temp, setTemp] = useState('Один из списка');
+  const [temp, setTemp] = useState(value);
   const [animated, setAnimated] = useState(false);
   const [animatedRipple, setAnimatedRipple] = useState(false);
   const SPEED_ANIMATION = '0.2s';
