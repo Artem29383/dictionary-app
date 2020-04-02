@@ -21,7 +21,7 @@ import { removeArrayElement } from 'utils/removeArrayElement';
 function* getDict(action) {
   try {
     const { data } = yield call(getDictionary, action.payload);
-    const dataNormalized = normalized(data[0].words);
+    const dataNormalized = normalized(data[0].words, 'dictionary');
     yield put({
       type: setDictionary,
       payload: {

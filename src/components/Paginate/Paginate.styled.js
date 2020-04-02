@@ -1,4 +1,5 @@
 import styled from 'styled-components/macro';
+import { colors } from 'styles/constants';
 /* stylelint-disable */
 
 export default {
@@ -16,23 +17,23 @@ export default {
     margin-left: -1px;
     cursor: pointer;
     line-height: 1.42857143;
-    color: #337ab7;
+    color: ${colors.astral};
     text-decoration: none;
-    background-color: #fff;
-    border: 1px solid #ddd;
+    background-color: ${colors.white};
+    border: 1px solid ${colors.alto};
     transition: background-color 0.1s linear, border-color 0.1s linear,
       color 0.1s linear;
 
     &.active {
-      color: #fff;
-      background-color: #337ab7;
-      border-color: #337ab7;
+      color: ${colors.white};
+      background-color: ${colors.astral};
+      border-color: ${colors.astral};
     }
 
     &:hover {
-      color: #fff;
-      background-color: #9d83b7;
-      border-color: #337ab7;
+      color: ${colors.white};
+      background-color: ${colors.lavenderPurple};
+      border-color: ${colors.astral};
     }
   `,
 };

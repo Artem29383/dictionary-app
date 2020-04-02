@@ -20,4 +20,18 @@ export const colors = {
   vermillion: '#ff490d',
   blazeOrange: '#ff6107',
   malibu: '#6eb9f7',
+  toreaBay: '#1228A9',
+  dustyGray: '#999',
+  graySuit: '#c4bfcb',
+  costaDelSol: '#556B2F',
+  astral: '#337ab7',
+  lavenderPurple: '#9d83b7',
+  gallery: '#ebebeb',
+  windSand: '#f4f4f4',
+};
+
+export const questionVariable = {
+  one: 'Один из списка',
+  some: 'Несколько из списка',
+  number: 'Численный',
 };

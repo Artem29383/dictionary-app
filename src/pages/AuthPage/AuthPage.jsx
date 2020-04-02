@@ -41,7 +41,7 @@ const AuthPage = () => {
         <Input
           label="Логин"
           name="login"
-          register={register({ required: true })}
+          register={register}
           errors={errors.login}
         />
       </S.WrapInput>
@@ -50,7 +50,7 @@ const AuthPage = () => {
           label="Пароль"
           name="password"
           type="password"
-          register={register({ required: true })}
+          register={register}
           errors={errors.password}
         />
       </S.WrapInput>

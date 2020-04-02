@@ -14,7 +14,7 @@ import {
 import { setMsg } from 'models/dictionary/reducer';
 import S from './AddWordModal.styled';
 
-const AddWordModal = ({ id, login, nameClass, toggle }) => {
+const AddWordModal = ({ id, login, isOpen, toggle }) => {
   const { register, errors, handleSubmit, setValue } = useForm({
     mode: 'onChange',
   });
@@ -27,8 +27,10 @@ const AddWordModal = ({ id, login, nameClass, toggle }) => {
   const setMessage = useAction(setMsg);
 
   useEffect(() => {
-    setAnimated(true);
-  }, []);
+    if (isOpen) {
+      setTimeout(() => setAnimated(isOpen), 200);
+    }
+  }, [isOpen]);
 
   useEffect(() => {
     if (msg.trim()) {
@@ -46,54 +48,44 @@ const AddWordModal = ({ id, login, nameClass, toggle }) => {
   };
 
   const hideWindow = e => {
-    if (e.target.dataset.close === 'true' || e.key === 'Escape') {
-      e.preventDefault();
-      setAnimated(false);
-      setTimeout(() => toggle(), 200);
+    e.preventDefault();
+    setAnimated(false);
+    setTimeout(() => toggle(), 200);
+  };
+
+  const hideWindowHandlerKey = e => {
+    if (e.key === 'Escape') {
+      hideWindow(e);
     }
   };
 
   useEffect(() => {
     document.body.style.height = '100vh';
     document.body.style.overflow = 'hidden';
-    document.addEventListener('click', hideWindow);
-    document.addEventListener('keydown', hideWindow);
+    document.addEventListener('keydown', hideWindowHandlerKey);
     return () => {
       document.body.style.height = '100%';
       document.body.style.overflow = 'visible';
-      document.removeEventListener('click', hideWindow);
-      document.removeEventListener('keydown', hideWindow);
+      document.removeEventListener('keydown', hideWindowHandlerKey);
     };
   }, []);
 
   return (
-    <S.OverlayM
-      className={nameClass}
-      isAnim={animated}
-      speedAnim={SPEED_ANIMATION}
-      data-close
-    >
+    <S.OverlayM isOpen={isOpen} isAnim={animated} speedAnim={SPEED_ANIMATION}>
+      <S.BackDrop onClick={hideWindow} />
       <S.ModalWindow
-        className={nameClass}
+        isOpen={isOpen}
         isAnim={animated}
         speedAnim={SPEED_ANIMATION}
         onSubmit={handleSubmit(submitNewWord)}
       >
         <S.ModalHeader>Добавить слово в словарь</S.ModalHeader>
         <S.ModalInputWrap>
-          <Input
-            label="Слово"
-            register={register({ required: true })}
-            name="word"
-          />
+          <Input label="Слово" register={register} name="word" />
           {errors.word && <S.Message>Поле обязательно к заполнению</S.Message>}
         </S.ModalInputWrap>
         <S.ModalInputWrap>
-          <Input
-            label="Перевод"
-            register={register({ required: true })}
-            name="translate"
-          />
+          <Input label="Перевод" register={register} name="translate" />
           {errors.translate && (
             <S.Message>Поле обязательно к заполнению</S.Message>
           )}
@@ -101,7 +93,7 @@ const AddWordModal = ({ id, login, nameClass, toggle }) => {
         <S.ModalInputWrap>
           <Input
             label="Произношение"
-            register={register({ required: true })}
+            register={register}
             name="pronunciation"
           />
           {errors.pronunciation && (
@@ -109,7 +101,7 @@ const AddWordModal = ({ id, login, nameClass, toggle }) => {
           )}
         </S.ModalInputWrap>
         <S.ModalFooter>
-          <ButtonRipple className="red" dataClose>
+          <ButtonRipple className="red" clickHandler={hideWindow}>
             Отмена
           </ButtonRipple>
           <ButtonRipple>Добавить</ButtonRipple>
@@ -123,7 +115,7 @@ const AddWordModal = ({ id, login, nameClass, toggle }) => {
 export default AddWordModal;
 AddWordModal.propTypes = {
   id: PropTypes.number.isRequired,
-  nameClass: PropTypes.string,
+  isOpen: PropTypes.bool,
   login: PropTypes.string.isRequired,
   toggle: PropTypes.func.isRequired,
 };

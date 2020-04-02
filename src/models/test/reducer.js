@@ -11,6 +11,8 @@ const testReducer = createSlice({
       ids: [],
     },
     testName: 'Очередной тест',
+    isLoad: true,
+    created: null,
   },
   reducers: {
     setQuestName(state, { payload }) {
@@ -21,16 +23,17 @@ const testReducer = createSlice({
         entities: {},
         ids: [],
       };
+      state.testName = 'Очередной тест';
+      state.created = null;
+      state.isLoad = true;
     },
     pushAnswer(state, { payload }) {
       const { id, qId, answer } = payload;
-      state.questions.entities[id].answer = {
-        entities: {
-          ...state.questions.entities[id].answer.entities,
-          [qId]: answer,
-        },
-        ids: [...state.questions.entities[id].answer.ids, qId],
-      };
+      state.questions.entities[id].answer.entities[qId] = answer;
+      state.questions.entities[id].answer.ids = [
+        ...state.questions.entities[id].answer.ids,
+        qId,
+      ];
     },
     pushQuestion(state, { payload }) {
       const { id, answer, questName } = payload;
@@ -39,12 +42,12 @@ const testReducer = createSlice({
     },
     toggleChecked(state, { payload }) {
       const { id, radioId, checkedId } = payload;
-      state.questions.entities[id].answer.entities[radioId].isChecked = true;
-      if (checkedId) {
+      if (checkedId.length !== 0) {
         state.questions.entities[id].answer.entities[
           checkedId
         ].isChecked = false;
       }
+      state.questions.entities[id].answer.entities[radioId].isChecked = true;
     },
     updateFieldAnswer(state, { payload }) {
       const { id, qId, value } = payload;
@@ -104,6 +107,19 @@ const testReducer = createSlice({
       state.questions.entities[id].errorMsg = errorMsg;
       state.questions.entities[id].isValid = false;
     },
+    setDragAndDropArray(state, { payload }) {
+      const { id, ids } = payload;
+      state.questions.entities[id].answer.ids = ids;
+    },
+    setFetchTestData(state, { payload }) {
+      const { testName, questions, created } = payload;
+      state.testName = testName;
+      state.questions = questions;
+      state.created = created;
+    },
+    setLoad(state, { payload }) {
+      state.isLoad = payload;
+    },
   },
 });
 
@@ -123,4 +139,7 @@ export const {
   setTestName,
   setValidQuestion,
   setQuestError,
+  setLoad,
+  setDragAndDropArray,
+  setFetchTestData,
 } = testReducer.actions;

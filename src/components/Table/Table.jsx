@@ -12,17 +12,17 @@ const Table = ({ userId, login, words, ids, sort, sortType }) => {
     <S.DivTable>
       <S.TableWrap>
         <S.Table>
-          <thead>
-            <tr>
+          <S.Thead>
+            <S.Tr>
               <S.Th onClick={() => sort('word')}>
                 Слова {sortType === 'asc' ? '▼' : '▲'}
               </S.Th>
               <S.Th>Перевод</S.Th>
               <S.Th>Произношение</S.Th>
               <S.Th>Удаление</S.Th>
-            </tr>
-          </thead>
-          <tbody>
+            </S.Tr>
+          </S.Thead>
+          <S.Tbody>
             {words ? (
               tableWords
             ) : (
@@ -30,7 +30,7 @@ const Table = ({ userId, login, words, ids, sort, sortType }) => {
                 <S.ThText>Словарь пуст</S.ThText>
               </S.TrText>
             )}
-          </tbody>
+          </S.Tbody>
         </S.Table>
       </S.TableWrap>
     </S.DivTable>

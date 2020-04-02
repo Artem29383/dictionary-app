@@ -3,7 +3,10 @@ import AuthPage from 'pages/AuthPage';
 import RegisterPage from 'pages/RegisterPage';
 import DictionaryPage from 'pages/DictionaryPage';
 import ControlWordsPage from 'pages/ControlWordsPage';
-import CreateTestPage from 'pages/CreateTestPage';
+import CreateEditTestPage from 'pages/CreateEditTestPage';
+import TestPage from 'pages/TestPage';
+import PassingTestPage from 'pages/PassingTestPage';
+import EditTestPage from 'pages/EditTestPage';
 
 export default [
   {
@@ -45,7 +48,28 @@ export default [
     path: routes.createTest,
     exact: true,
     isAuth: true,
-    component: CreateTestPage,
+    component: CreateEditTestPage,
+    isAdmin: false,
+  },
+  {
+    path: routes.tests,
+    exact: true,
+    isAuth: true,
+    component: TestPage,
+    isAdmin: false,
+  },
+  {
+    path: `${routes.edit}/:id`,
+    exact: false,
+    isAuth: true,
+    component: EditTestPage,
+    isAdmin: false,
+  },
+  {
+    path: `${routes.pass}/:id`,
+    exact: false,
+    isAuth: true,
+    component: PassingTestPage,
     isAdmin: false,
   },
 ];

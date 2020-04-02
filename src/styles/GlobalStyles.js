@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+import { colors } from 'styles/constants';
 import Medium from '../fonts/HelveticaNeueCyr-Medium.otf';
 import Bold from '../fonts/HelveticaNeueCyr-Bold.otf';
 import Black from '../fonts/HelveticaNeueCyr-Black.otf';
@@ -196,7 +197,7 @@ export const GlobalStyles = createGlobalStyle`
     width: 100%;
     color: #000;
     font-family: Medium;
-    background-color: #fff;
+    background-color: ${colors.white};
   }
   
   body::-webkit-scrollbar {
@@ -206,12 +207,8 @@ body::-webkit-scrollbar-track {
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
 }
 body::-webkit-scrollbar-thumb {
-  background-color: #1228a9;
+  background-color: ${colors.toreaBay};
   outline: 1px solid slategrey;
 }
-  
-  body > div {
-    height: 100%;
-  }
 `;
 /* stylelint-enable */

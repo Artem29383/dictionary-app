@@ -1,9 +1,10 @@
 import styled from 'styled-components/macro';
+import { colors } from 'styles/constants';
 
 export default {
   Div: styled.div`
     width: 30px;
-    transform: ${({ rotate }) => `rotate(${rotate});`};
+    transform: ${({ rotate }) => `rotate(${rotate}) translate(-50%, -50%)`};
     height: 30px;
     position: ${({ position }) => position};
     right: ${({ right }) => right};
@@ -11,10 +12,10 @@ export default {
     top: ${({ top }) => top};
     left: ${({ left }) => left};
     cursor: pointer;
-    margin-left: 10px;
+    margin: ${({ margin }) => margin};
 
     &:hover > span {
-      background-color: ${({ hover }) => hover && 'red'};
+      background-color: ${({ hover }) => hover && colors.blazeOrange};
     }
   `,
   line1: styled.span`

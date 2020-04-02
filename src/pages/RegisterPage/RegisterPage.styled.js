@@ -4,7 +4,7 @@ import theme from '../../styles/theme';
 
 export default {
   RegisterForm: styled.form`
-    position: relative;
+    position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);

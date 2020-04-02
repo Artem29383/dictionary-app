@@ -5,7 +5,6 @@ import Cross from 'components/Cross';
 import S from './ModalOverlay.styled';
 
 const ModalOverlay = ({
-  nameClass,
   toggle,
   children,
   isFooter,
@@ -15,71 +14,78 @@ const ModalOverlay = ({
   link,
   linkPath,
   clickHandler,
-  isCloseBtn1,
-  isCloseBtn2,
+  isOpen,
 }) => {
   const [animated, setAnimated] = useState(null);
   const SPEED_ANIMATION = '0.2s';
-
   useEffect(() => {
-    setAnimated(true);
-  }, []);
+    if (isOpen) {
+      setTimeout(() => setAnimated(isOpen), 200);
+    }
+  }, [isOpen]);
 
   const hideWindow = e => {
-    if (e.target.dataset.close === 'true' || e.key === 'Escape') {
-      e.preventDefault();
-      setAnimated(false);
-      setTimeout(() => toggle(false), 200);
+    e.preventDefault();
+    setAnimated(false);
+    setTimeout(() => toggle(), 200);
+  };
+
+  const hideWindowHandlerKey = e => {
+    if (e.key === 'Escape') {
+      hideWindow(e);
     }
   };
 
   useEffect(() => {
     document.body.style.height = '100vh';
     document.body.style.overflow = 'hidden';
-    document.addEventListener('click', hideWindow);
-    document.addEventListener('keydown', hideWindow);
+    document.addEventListener('keydown', hideWindowHandlerKey);
     return () => {
       document.body.style.height = '100%';
       document.body.style.overflow = 'visible';
-      document.removeEventListener('click', hideWindow);
-      document.removeEventListener('keydown', hideWindow);
+      document.removeEventListener('keydown', hideWindowHandlerKey);
     };
   }, []);
 
   return (
-    <S.OverlayM
-      className={nameClass}
-      isAnim={animated}
-      speedAnim={SPEED_ANIMATION}
-      data-close
-    >
+    <S.OverlayM isAnim={animated} speedAnim={SPEED_ANIMATION} isOpen={isOpen}>
+      <S.BackDrop onClick={hideWindow} />
       <S.ModalWindow
-        className={nameClass}
         isAnim={animated}
         speedAnim={SPEED_ANIMATION}
+        isOpen={isOpen}
       >
         <S.ModalHeader>
-          <Cross rotate="45deg" right="20px" position="absolute" dataClose />
-          {headerText}
+          <Cross
+            rotate="45deg"
+            right="20px"
+            position="absolute"
+            clickHandler={hideWindow}
+          />
+          <S.Title>{headerText}</S.Title>
         </S.ModalHeader>
         {children}
         {isFooter && (
           <S.ModalFooter>
             {negativeBtn && (
               <ButtonRipple
-                onClick={clickHandler}
+                clickHandler={e => {
+                  clickHandler();
+                  hideWindow(e);
+                }}
                 className="red"
-                dataClose={isCloseBtn1}
               >
                 {negativeBtn}
               </ButtonRipple>
             )}
             {positiveBtn && (
-              <ButtonRipple dataClose={isCloseBtn2}>{positiveBtn}</ButtonRipple>
+              <ButtonRipple clickHandler={hideWindow}>
+                {positiveBtn}
+              </ButtonRipple>
             )}
             {link && (
               <S.Link to={linkPath}>
-                <ButtonRipple dataClose>{link}</ButtonRipple>
+                <ButtonRipple>{link}</ButtonRipple>
               </S.Link>
             )}
           </S.ModalFooter>
@@ -90,7 +96,7 @@ const ModalOverlay = ({
 };
 
 ModalOverlay.propTypes = {
-  nameClass: PropTypes.string,
+  isOpen: PropTypes.bool,
   toggle: PropTypes.func.isRequired,
   children: PropTypes.node,
   isFooter: PropTypes.bool,
@@ -100,16 +106,12 @@ ModalOverlay.propTypes = {
   link: PropTypes.string,
   linkPath: PropTypes.string,
   clickHandler: PropTypes.func,
-  isCloseBtn1: PropTypes.bool,
-  isCloseBtn2: PropTypes.bool,
 };
 
 ModalOverlay.defaultProps = {
   isFooter: false,
   linkPath: '/',
   headerText: 'just modal window',
-  isCloseBtn1: false,
-  isCloseBtn2: false,
 };
 
 export default memo(ModalOverlay);

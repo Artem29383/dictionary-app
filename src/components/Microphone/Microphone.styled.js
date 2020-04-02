@@ -1,12 +1,13 @@
 import styled from 'styled-components/macro';
+import { colors } from 'styles/constants';
 
 export default {
   Svg: styled.svg`
-    fill: #000;
+    fill: ${colors.black};
     cursor: pointer;
 
     &:hover {
-      fill: red;
+      fill: ${colors.blazeOrange};
     }
   `,
 };

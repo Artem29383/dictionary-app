@@ -5,7 +5,6 @@ import S from './Cross.styled';
 const Cross = ({
   color,
   rotate,
-  dataClose,
   clickHandler,
   position,
   top,
@@ -13,11 +12,11 @@ const Cross = ({
   bottom,
   right,
   hover,
+  margin,
 }) => {
   return (
     <S.Div
       rotate={rotate}
-      data-close={dataClose}
       onClick={clickHandler}
       position={position}
       top={top}
@@ -25,9 +24,10 @@ const Cross = ({
       right={right}
       bottom={bottom}
       hover={hover}
+      margin={margin}
     >
-      <S.line1 color={color} data-close={dataClose} />
-      <S.line2 color={color} data-close={dataClose} />
+      <S.line1 color={color} />
+      <S.line2 color={color} />
     </S.Div>
   );
 };
@@ -35,7 +35,6 @@ const Cross = ({
 Cross.propTypes = {
   color: PropTypes.string,
   rotate: PropTypes.string,
-  dataClose: PropTypes.bool,
   clickHandler: PropTypes.func,
   top: PropTypes.string,
   left: PropTypes.string,
@@ -43,18 +42,19 @@ Cross.propTypes = {
   bottom: PropTypes.string,
   position: PropTypes.string,
   hover: PropTypes.bool,
+  margin: PropTypes.string,
 };
 
 Cross.defaultProps = {
   color: 'white',
   rotate: '0deg',
-  dataClose: false,
   top: null,
   bottom: null,
   right: null,
   left: null,
   position: 'static',
   hover: false,
+  margin: null,
 };
 
 export default memo(Cross);

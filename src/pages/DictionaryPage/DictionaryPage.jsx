@@ -22,6 +22,7 @@ import Paginate from 'components/Paginate';
 import SelectOption from 'components/SelectOption';
 import AddWordModal from 'pages/DictionaryPage/AddWordModal';
 import { getUserSelector } from 'models/user/selectors';
+import Portal from 'components/Portal';
 import S from './DictionaryPage.styled';
 
 const DictionaryPage = () => {
@@ -44,7 +45,7 @@ const DictionaryPage = () => {
   const onSort = (sortCol, initSort) => {
     const sortType = sort === 'asc' ? 'desc' : 'asc';
     const displayData = orderBy(words, sortCol, initSort || sortType);
-    const dataNormalized = normalized(displayData);
+    const dataNormalized = normalized(displayData, 'dictionary');
     setDict({
       entities: dataNormalized.entities.dictionary,
       ids: dataNormalized.result,
@@ -106,18 +107,24 @@ const DictionaryPage = () => {
         />
       ) : null}
       <S.BtnPos>
-        <ButtonRipple onClick={setShowModal} className="circle">
+        <ButtonRipple clickHandler={setShowModal} className="circle">
           ✚
         </ButtonRipple>
       </S.BtnPos>
-      {showModal && (
-        <AddWordModal
-          id={user.id}
-          login={user.login}
-          toggle={setShowModal}
-          nameClass={showModal && 'show'}
-        />
-      )}
+      <Portal
+        id="Modal"
+        /* eslint-disable-next-line react/no-children-prop */
+        children={
+          showModal && (
+            <AddWordModal
+              id={user.id}
+              login={user.login}
+              toggle={setShowModal}
+              isOpen={showModal}
+            />
+          )
+        }
+      />
     </S.Content>
   );
 };

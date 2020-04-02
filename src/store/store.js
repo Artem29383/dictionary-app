@@ -6,6 +6,8 @@ import { createBrowserHistory } from 'history';
 import authReducer from 'models/user/reducer';
 import dictionaryReducer from 'models/dictionary/reducer';
 import testReducer from 'models/test/reducer';
+import testsDataReducer from 'models/tests/reducer';
+import passTestReducer from 'models/passTest/reducer';
 import { rootSaga } from './rootSaga';
 
 export const history = createBrowserHistory();
@@ -16,6 +18,8 @@ const reducer = combineReducers({
   auth: authReducer,
   dictionary: dictionaryReducer,
   test: testReducer,
+  dataTests: testsDataReducer,
+  passingTest: passTestReducer,
   router: connectRouter(history),
 });
 

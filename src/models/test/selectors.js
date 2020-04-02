@@ -39,3 +39,14 @@ export const getTestNameSelector = createSelector(
   getTestName,
   testName => testName
 );
+
+const getLoad = state => state.test.isLoad;
+
+export const getLoadSelector = createSelector(getLoad, isLoad => isLoad);
+
+const getCreatedData = state => state.test.created;
+
+export const getCreatedDataSelector = createSelector(
+  getCreatedData,
+  created => created
+);

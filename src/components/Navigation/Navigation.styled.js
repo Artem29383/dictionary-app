@@ -1,11 +1,12 @@
 import styled from 'styled-components/macro';
 import { NavLink } from 'react-router-dom';
+import { colors } from 'styles/constants';
 
 export default {
   Nav: styled.div`
     width: 100%;
     height: 80px;
-    background-color: #2196f3;
+    background-color: ${colors.dodjerBlue};
     display: flex;
   `,
   NavItem: styled.div`

@@ -1,4 +1,5 @@
-// eslint-disable-next-line no-unused-vars,consistent-return
+import { questionVariable } from 'styles/constants';
+
 export function checkValidationTest(
   questions,
   ids,
@@ -9,8 +10,8 @@ export function checkValidationTest(
   const inValidQuestions = [];
   ids.forEach(id => {
     if (
-      questions[id].type === 'Один из нескольких' ||
-      questions[id].type === 'Несколько из списка'
+      questions[id].type === questionVariable.one ||
+      questions[id].type === questionVariable.some
     ) {
       if (questions[id].answer.ids.length < 2) {
         inValidQuestions.push({
@@ -35,15 +36,17 @@ export function checkValidationTest(
       }
     }
   });
-  if (inValidQuestions.length === 0) return true;
-
-  if (validQuestions.length !== 0) {
-    validQuestions.forEach(qId => {
-      setValidQuest(qId);
-    });
+  if (inValidQuestions.length === 0) {
+    if (validQuestions.length !== 0) {
+      validQuestions.forEach(qId => {
+        setValidQuest(qId);
+      });
+    }
+    return true;
   }
 
   inValidQuestions.forEach(q => {
     setInvalidQuest({ id: q.id, errorMsg: q.errorMsg });
   });
+  return false;
 }

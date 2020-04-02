@@ -1,4 +1,5 @@
 import styled, { keyframes } from 'styled-components';
+import { colors } from 'styles/constants';
 /* stylelint-disable */
 
 const keyFrames = keyframes`
@@ -27,8 +28,8 @@ export const LoaderComponent = styled.div`
     height: 64px;
     margin: 8px;
     border-radius: 50%;
-    border: 6px solid #ea5a5a;
-    border-color: #ea5a5a transparent #ea5a5a transparent;
+    border: 6px solid ${colors.mandy};
+    border-color: ${colors.mandy} transparent ${colors.mandy} transparent;
     animation: ${keyFrames} 1.2s linear infinite;
   }
 `;

@@ -8,4 +8,5 @@ module.exports = {
   store: `${process.cwd()}/src/store`,
   constants: `${process.cwd()}/src/constants`,
   styles: `${process.cwd()}/src/styles`,
+  images: `${process.cwd()}/src/images`,
 };

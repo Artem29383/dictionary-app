@@ -1,5 +1,6 @@
 import styled from 'styled-components/macro';
 import theme from 'styles/theme';
+import { colors } from 'styles/constants';
 
 export default {
   ThText: styled.th`
@@ -13,7 +14,7 @@ export default {
     padding-bottom: 16px;
 
     &.red {
-      color: red;
+      color: ${colors.blazeOrange};
     }
   `,
   ThDiv: styled.div`
@@ -33,13 +34,13 @@ export default {
     font-size: 15px;
     transform: translate(-50%, -50%);
     position: absolute;
-    color: #808080;
+    color: ${colors.gray};
     padding-left: 10px;
     border-radius: ${theme.radius.google};
     border: ${theme.border.google};
 
     &:nth-child(2n) {
-      color: #5e5e5e;
+      color: ${colors.scorpion};
     }
   `,
 };

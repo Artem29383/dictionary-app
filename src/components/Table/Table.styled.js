@@ -1,4 +1,5 @@
 import styled from 'styled-components/macro';
+import { colors } from 'styles/constants';
 
 export default {
   DivTable: styled.div`
@@ -18,20 +19,20 @@ export default {
     width: 100%;
   `,
   TrText: styled.tr`
-    color: #808080;
-    background-color: #fafafa;
+    color: ${colors.gray};
+    background-color: ${colors.alabaster};
 
     &:nth-child(2n) {
-      color: #5e5e5e;
-      background-color: #d5d5d5;
+      color: ${colors.scorpion};
+      background-color: ${colors.alto};
     }
   `,
   Th: styled.th`
     font-size: 18px;
-    color: #fff;
+    color: ${colors.white};
     line-height: 1.4;
     font-family: Light, serif;
-    background-color: #6c7ae0;
+    background-color: ${colors.havelockBlue};
     padding-top: 18px;
     padding-bottom: 18px;
     cursor: pointer;
@@ -47,7 +48,10 @@ export default {
     cursor: pointer;
 
     &.red {
-      color: red;
+      color: ${colors.blazeOrange};
     }
   `,
+  Thead: styled.thead``,
+  Tr: styled.tr``,
+  Tbody: styled.tbody``,
 };

@@ -1,10 +1,11 @@
 import styled from 'styled-components/macro';
+import { colors } from 'styles/constants';
 /* stylelint-disable */
 
 const Label = styled.label`
   font-size: 14px;
   pointer-events: none;
-  color: #999;
+  color: ${colors.dustyGray};
   position: absolute;
   left: 30px;
   top: 25px;
@@ -17,7 +18,8 @@ const Bar = styled.div`
   content: '';
   transform: rotateY(90deg);
   transition: transform 0.2s linear;
-  background-color: ${({ isError }) => (isError ? 'red' : '#2196f3')};
+  background-color: ${({ isError }) =>
+    isError ? colors.blazeOrange : colors.dodjerBlue};
   width: 100%;
   bottom: 0;
   left: 0;
@@ -36,13 +38,13 @@ export default {
     font-size: 22px;
     padding-left: 15px;
     padding-bottom: 7px;
-    border-bottom: 2px solid #999;
+    border-bottom: 2px solid ${colors.dustyGray};
     margin-left: 50%;
     transform: translateX(-50%);
 
     &:focus ~ ${Label}, &:not(:placeholder-shown) ~ ${Label} {
       top: -5px;
-      color: #2196f3;
+      color: ${colors.dodjerBlue};
     }
 
     &:focus ~ ${Bar}, &:not(:placeholder-shown) ~ ${Bar} {
@@ -51,7 +53,7 @@ export default {
   `,
   Error: styled.div`
     font-size: 16px;
-    color: red;
+    color: ${colors.blazeOrange};
     padding: 10px 0 0 15px;
   `,
 };

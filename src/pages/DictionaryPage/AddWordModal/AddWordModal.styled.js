@@ -1,4 +1,5 @@
 import styled from 'styled-components/macro';
+import { colors } from 'styles/constants';
 
 export default {
   OverlayM: styled.div`
@@ -7,29 +8,23 @@ export default {
     bottom: 0;
     left: 0;
     right: 0;
-    background-color: ${({ isAnim }) => !isAnim && 'rgba(0, 0, 0, 0);'};
+    background-color: ${({ isAnim }) =>
+      isAnim ? 'rgba(0, 0, 0, 0.6);' : 'rgba(0, 0, 0, 0);'};
     transition: ${({ speedAnim }) => `background-color ${speedAnim} linear;`};
     z-index: 1000;
     overflow: hidden;
-
-    &.show {
-      background-color: ${({ isAnim }) => isAnim && 'rgba(0, 0, 0, 0.6);'};
-    }
   `,
   ModalWindow: styled.form`
-    width: 400px;
+    width: 420px;
     height: auto;
     z-index: 1000;
     position: relative;
-    min-height: 400px;
-    background-color: #fff;
+    min-height: 160px;
+    background-color: ${colors.white};
     margin: 0 auto;
-    transform: ${({ isAnim }) => !isAnim && 'translateY(-450px);'};
+    transform: ${({ isAnim }) =>
+      isAnim ? 'translateY(100px);' : 'translateY(-450px);'};
     transition: ${({ speedAnim }) => `transform ${speedAnim} linear;`};
-
-    &.show {
-      transform: ${({ isAnim }) => isAnim && 'translateY(100px);'};
-    }
   `,
   ModalHeader: styled.div`
     height: 80px;
@@ -63,5 +58,12 @@ export default {
     &.green {
       color: darkolivegreen;
     }
+  `,
+  BackDrop: styled.div`
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
   `,
 };

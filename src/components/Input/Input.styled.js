@@ -1,4 +1,5 @@
 import styled from 'styled-components/macro';
+import { colors } from 'styles/constants';
 import theme from '../../styles/theme';
 /* stylelint-disable */
 
@@ -11,13 +12,13 @@ export const InputField = styled.input`
 `;
 
 export const Label = styled.label`
-  color: #80868b;
+  color: ${colors.olsoGray};
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
   left: 13px;
   pointer-events: none;
-  background-color: #fff;
+  background-color: ${colors.white};
   transition: transform 0.1s linear, color 0.1s linear;
 `;
 
@@ -28,7 +29,7 @@ export default {
     border-radius: ${theme.radius.google};
 
     & ${InputField}:focus {
-      border: 1px solid royalblue;
+      border: 1px solid ${colors.royalBlue};
       box-shadow: inset 0 0 1px 1.5px rgba(77, 37, 196, 1);
     }
 
@@ -38,7 +39,7 @@ export default {
       &
       ${InputField}:not(:placeholder-shown)
       + ${Label} {
-      color: #1a73e8;
+      color: ${colors.royalBlue};
       transform: translateY(-220%);
       padding: 0 3px;
       font-size: 14px;

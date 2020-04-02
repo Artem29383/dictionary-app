@@ -4,6 +4,6 @@ export default {
   Content: styled.div`
     width: 100%;
     position: relative;
-    height: 100%;
+    min-height: 100vh;
   `,
 };

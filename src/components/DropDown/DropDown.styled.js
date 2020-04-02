@@ -1,5 +1,7 @@
 import styled from 'styled-components/macro';
 import theme from 'styles/theme';
+import { colors } from 'styles/constants';
+/* stylelint-disable */
 
 export default {
   DropDownDiv: styled.div`
@@ -9,7 +11,7 @@ export default {
     border: ${theme.border.google};
     cursor: pointer;
     font-size: 16px;
-    color: #80868b;
+    color: ${colors.olsoGray};
   `,
   DefaultValueDiv: styled.div`
     position: absolute;
@@ -28,11 +30,11 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #fff left/15000%;
+    background: ${colors.white} left/15000%;
     transition: background 0.8s;
 
     &:active {
-      background-color: #c4bfcb;
+      background-color: ${colors.graySuit};
       background-size: 1%;
       transition: background 0s;
     }
@@ -72,20 +74,21 @@ export default {
     },
   }))`
     display: flex;
-    border-bottom: 1px solid #80868b;
-    border-left: 1px solid #80868b;
-    border-right: 1px solid #80868b;
+    border-bottom: 1px solid ${colors.olsoGray};
+    border-left: 1px solid ${colors.olsoGray};
+    border-right: 1px solid ${colors.olsoGray};
     justify-content: center;
     align-items: center;
     height: 50px;
-    background: #fff left/15000%;
-    background-color: ${({ isAnim }) => isAnim && '#c4bfcb'};
+    background: ${colors.white} left/15000%;
+    background-color: ${({ isAnim }) => isAnim && colors.graySuit};
     background-size: ${({ isAnim }) => isAnim && '1%'};
     transition: ${({ isAnim }) =>
       isAnim ? 'background 0s' : 'background 0.8s'};
 
     &:first-child {
-      border-top: 1px solid #80868b;
+      border-top: 1px solid ${colors.olsoGray};
     }
   `,
 };
+/* stylelint-enable */

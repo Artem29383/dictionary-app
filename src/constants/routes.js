@@ -5,4 +5,6 @@ export default {
   register: '/register',
   edit: '/edit',
   createTest: '/create',
+  tests: '/tests',
+  pass: '/pass',
 };

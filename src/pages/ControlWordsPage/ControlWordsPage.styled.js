@@ -1,9 +1,10 @@
 import styled from 'styled-components/macro';
+import { colors } from 'styles/constants';
 
 export default {
   Content: styled.div`
     width: 100%;
-    height: calc(100% - 80px);
+    height: calc(100vh - 80px);
     display: flex;
     font-size: 24px;
     justify-content: center;
@@ -18,8 +19,8 @@ export default {
   `,
   FormHeader: styled.div`
     height: 80px;
-    background-color: #2196f3;
-    color: #fff;
+    background-color: ${colors.dodjerBlue};
+    color: ${colors.white};
     position: relative;
   `,
   FormHeaderText: styled.span`
@@ -56,6 +57,6 @@ export default {
   FormText: styled.div`
     text-align: center;
     margin: 10px 0;
-    color: red;
+    color: ${colors.blazeOrange};
   `,
 };

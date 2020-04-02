@@ -141,10 +141,10 @@ const ControlWordsPage = () => {
               </S.FormInputWrap>
             </S.FormBody>
             <S.FormFooter>
-              <ButtonRipple onClick={() => checkAnswer('Enter')}>
+              <ButtonRipple clickHandler={() => checkAnswer('Enter')}>
                 Проверить
               </ButtonRipple>
-              <ButtonRipple className="red" onClick={offTest}>
+              <ButtonRipple className="red" clickHandler={offTest}>
                 Прервать тест
               </ButtonRipple>
             </S.FormFooter>
@@ -161,7 +161,7 @@ const ControlWordsPage = () => {
               </S.FormBodyText>
             </S.FormBody>
             <S.FormFooter>
-              <ButtonRipple onClick={repeatTest}>Повторить</ButtonRipple>
+              <ButtonRipple clickHandler={repeatTest}>Повторить</ButtonRipple>
             </S.FormFooter>
           </>
         )}

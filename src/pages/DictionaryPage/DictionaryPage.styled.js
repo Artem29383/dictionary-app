@@ -6,7 +6,7 @@ export default {
     padding: 1px;
     width: 100%;
     height: auto;
-    min-height: calc(100% - 80px);
+    min-height: calc(100vh - 80px);
   `,
   BtnPos: styled.div`
     width: 50px;

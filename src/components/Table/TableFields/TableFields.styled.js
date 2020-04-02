@@ -1,13 +1,14 @@
 import styled from 'styled-components/macro';
+import { colors } from 'styles/constants';
 
 export default {
   TrText: styled.tr`
-    color: #808080;
-    background-color: #fafafa;
+    color: ${colors.gray};
+    background-color: ${colors.alabaster};
 
     &:nth-child(2n) {
-      color: #5e5e5e;
-      background-color: #d5d5d5;
+      color: ${colors.scorpion};
+      background-color: ${colors.alto};
     }
   `,
   ThText: styled.th`
