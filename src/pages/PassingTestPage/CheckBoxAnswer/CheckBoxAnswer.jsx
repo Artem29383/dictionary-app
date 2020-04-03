@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import Radio from 'components/Radio';
+import CheckBox from 'components/CheckBox';
 import useAction from 'hooks/useAction';
 import {
   setDataCurrentQuest,
-  setDefaultAnswersRadio,
+  setDefaultAnswersCheckBox,
   setErrorMessage,
   setUserTouchedAnswer,
-  toggleChecked,
+  toggleCheckBox,
 } from 'models/passTest/reducer';
 import useSelector from 'hooks/useSelector';
 import {
@@ -16,21 +16,19 @@ import {
   getAnswerOptionsQuSel,
   getIdsAnswerOptionsQuSel,
 } from 'models/passTest/selectors';
-import nanoid from 'nanoid';
-import S from './RadioAnswer.styled';
+import S from './CheckBoxAnswer.styled';
 
-const RadioAnswer = ({ entities, ids, questId, questIndex }) => {
+const CheckBoxAnswer = ({ entities, ids, questId, questIndex }) => {
   const setThisQuest = useAction(setDataCurrentQuest);
-  const nameRadio = nanoid();
-  const resetAllChecked = useAction(setDefaultAnswersRadio);
   const checkedId = ids.filter(ans => entities[ans].isChecked);
+  const resetAllChecked = useAction(setDefaultAnswersCheckBox);
   const answerOptions = useSelector(getAnswerOptionsQuSel);
   const idsAnswerOptions = useSelector(getIdsAnswerOptionsQuSel);
-  const toggleRadio = useAction(toggleChecked);
   const setError = useAction(setErrorMessage);
   const answeredQuestsIds = useSelector(getAllUserAnsweredIdSel);
   const answeredQuestsEntities = useSelector(getAllUserAnsweredEntitiesSel);
   const setUserAnswerFromCache = useAction(setUserTouchedAnswer);
+  const toggleBoxHandler = useAction(toggleCheckBox);
 
   useEffect(() => {
     setThisQuest({
@@ -50,34 +48,29 @@ const RadioAnswer = ({ entities, ids, questId, questIndex }) => {
     }
   }, [questIndex]);
 
-  const changeRadioHandler = e => {
-    // eslint-disable-next-line array-callback-return,consistent-return,no-shadow
-    const [checkedId] = idsAnswerOptions.filter(qId => {
-      if (answerOptions[qId].isChecked) return qId;
-    });
-    const radioId = e.currentTarget.id;
-    toggleRadio({ radioId, checkedId });
+  const changeCheckBox = e => {
+    const checkBoxId = e.currentTarget.id;
+    toggleBoxHandler(checkBoxId);
     setError('');
   };
 
   return idsAnswerOptions.map(id => (
-    <S.Radio key={answerOptions[id].id}>
-      <Radio
-        id={answerOptions[id].id}
+    <S.CheckBox key={id}>
+      <CheckBox
+        changeHandler={changeCheckBox}
         label={answerOptions[id].value}
-        name={nameRadio}
+        id={id}
         isChecked={answerOptions[id].isChecked}
-        changeHandler={changeRadioHandler}
       />
-    </S.Radio>
+    </S.CheckBox>
   ));
 };
 
-RadioAnswer.propTypes = {
+CheckBoxAnswer.propTypes = {
   entities: PropTypes.any,
   ids: PropTypes.array,
   questId: PropTypes.string,
   questIndex: PropTypes.number,
 };
 
-export default RadioAnswer;
+export default CheckBoxAnswer;

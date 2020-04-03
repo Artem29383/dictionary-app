@@ -10,6 +10,7 @@ const InputEdit = ({
   label,
   focus,
   isError,
+  type,
 }) => (
   <>
     <S.Group>
@@ -19,7 +20,7 @@ const InputEdit = ({
         onBlur={blur}
         onKeyDown={keyDown}
         placeholder=" "
-        type="text"
+        type={type}
         autoFocus={focus}
       />
       <S.Bar isError={isError} />
@@ -38,8 +39,10 @@ InputEdit.propTypes = {
   label: PropTypes.string,
   focus: PropTypes.bool,
   isError: PropTypes.bool,
+  type: PropTypes.string,
 };
 
 InputEdit.defaultProps = {
   focus: false,
+  type: 'text',
 };

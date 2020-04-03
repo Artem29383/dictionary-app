@@ -33,11 +33,12 @@ export default {
     width: 35%;
     height: 100%;
     padding: 0 25px;
-    box-shadow: ${theme.shadows.xl};
+    box-shadow: -5px 0 5px -3px rgba(0, 0, 0, 0.75);
   `,
   PassQuest: styled.div`
     width: 65%;
     height: 100%;
+    position: relative;
   `,
   QuestTitle: styled.div`
     font-size: 36px;
@@ -45,15 +46,33 @@ export default {
   `,
   QuestBody: styled.div`
     width: 100%;
-    padding: 10px 0 10px 25px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    max-height: 230px;
+    padding: 10px 0 20px 25px;
+    box-shadow: inset 0 0 17px -3px rgba(0, 0, 0, 0.75);
+
+    &::-webkit-scrollbar {
+      width: 5px;
+      margin-left: 10px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: ${colors.gray};
+      outline: 1px solid ${colors.olsoGray};
+    }
   `,
   QuestFooter: styled.div`
     width: 100%;
+    display: flex;
+    justify-content: space-around;
     padding: 10px 50px 20px 50px;
+    position: absolute;
+    bottom: 10px;
   `,
   Body: styled.div`
     width: 100%;
-    height: 100%;
+    height: 450px;
     display: flex;
     background-color: ${colors.windSand};
   `,
@@ -81,20 +100,15 @@ export default {
       outline: 1px solid ${colors.olsoGray};
     }
   `,
-  AllQuestItem: styled.li`
-    width: 100%;
-    border-radius: 5px;
-    margin: 10px 5px 10px 0;
-    cursor: pointer;
-    padding: 5px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 2px solid ${colors.olsoGray};
-  `,
   Error: styled.div`
     color: ${colors.vermillion};
     font-size: 28px;
     padding: 20px 0 0 10px;
+  `,
+  Answer: styled.div`
+    font-size: 36px;
+    color: ${colors.dodjerBlue};
+    text-align: center;
+    padding: 10px 0;
   `,
 };

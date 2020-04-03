@@ -1,6 +1,25 @@
 import { createSlice } from '@reduxjs/toolkit';
 /* eslint-disable no-param-reassign */
-
+/*
+questions: {
+      entities: [],
+      ids: [],
+    },
+    Изначальные данные взятые с сервера
+    currentQuestForPassing: {
+      entities: {},
+      ids: [],
+      questId: null,
+      correctAnswer: [],
+      userAnswer: [],
+    }
+    Данные ткущего вопроса, на котороый в данный момент отвечает пользователь
+    allCorrectUserAnswQuest: {
+      entities: {},
+      ids: [],
+    }
+    База ответов пользователя на отвеченные им вопросы
+ */
 const passTestReducer = createSlice({
   name: 'passingTest',
   initialState: {
@@ -58,8 +77,16 @@ const passTestReducer = createSlice({
     setDataCurrentQuest(state, { payload }) {
       Object.assign(state.currentQuestForPassing, payload);
     },
-    setDefaultAnswers(state, { payload }) {
+    setDefaultAnswersRadio(state, { payload }) {
       state.currentQuestForPassing.entities[payload].isChecked = false;
+    },
+    setDefaultAnswerNumeric(state, { payload }) {
+      state.currentQuestForPassing.entities[payload].value = '0';
+    },
+    setDefaultAnswersCheckBox(state, { payload }) {
+      payload.forEach(p => {
+        state.currentQuestForPassing.entities[p].isChecked = false;
+      });
     },
     toggleChecked(state, { payload }) {
       const { radioId, checkedId } = payload;
@@ -69,12 +96,18 @@ const passTestReducer = createSlice({
         state.currentQuestForPassing.entities[checkedId].isChecked = false;
       }
     },
+    setNumericAnswer(state, { payload }) {
+      const { taskId, value } = payload;
+      state.currentQuestForPassing.entities[taskId].value = value;
+      state.currentQuestForPassing.userAnswer = [value, taskId];
+    },
     setErrorMessage(state, { payload }) {
       state.errorMessage = payload;
     },
     pushAnswer(state, { payload }) {
-      const { questId, userQuestAnswer } = payload;
+      const { questId, userQuestAnswer, type } = payload;
       state.allCorrectUserAnswQuest.entities[questId] = userQuestAnswer;
+      state.allCorrectUserAnswQuest.entities[questId].type = type;
       if (!state.allCorrectUserAnswQuest.ids.includes(questId)) {
         state.allCorrectUserAnswQuest.ids.push(questId);
       }
@@ -82,10 +115,25 @@ const passTestReducer = createSlice({
     },
     setUserTouchedAnswer(state, { payload }) {
       const { answers } = payload;
-      console.log(answers);
       answers.forEach(ans => {
         state.currentQuestForPassing.entities[ans].isChecked = true;
+        state.currentQuestForPassing.userAnswer.push(ans);
       });
+    },
+    setUserTouchedNumAnswer(state, { payload }) {
+      const { taskId, answers } = payload;
+      // eslint-disable-next-line prefer-destructuring
+      state.currentQuestForPassing.entities[taskId].value = answers[0];
+    },
+    toggleCheckBox(state, { payload }) {
+      state.currentQuestForPassing.entities[payload].isChecked = !state
+        .currentQuestForPassing.entities[payload].isChecked;
+      const index = state.currentQuestForPassing.userAnswer.indexOf(payload);
+      if (index !== -1) {
+        state.currentQuestForPassing.userAnswer.splice(index, 1);
+      } else {
+        state.currentQuestForPassing.userAnswer.push(payload);
+      }
     },
   },
 });
@@ -95,10 +143,15 @@ export const {
   setLoading,
   setLoadDataTest,
   setDataCurrentQuest,
-  setDefaultAnswers,
+  setDefaultAnswersRadio,
   toggleChecked,
   setErrorMessage,
   pushAnswer,
   removeTrash,
   setUserTouchedAnswer,
+  setNumericAnswer,
+  setDefaultAnswerNumeric,
+  setUserTouchedNumAnswer,
+  setDefaultAnswersCheckBox,
+  toggleCheckBox,
 } = passTestReducer.actions;

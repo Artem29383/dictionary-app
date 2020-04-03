@@ -35,6 +35,9 @@ export function checkValidationTest(
         }
       }
     }
+    if (questions[id].type === questionVariable.number) {
+      validQuestions.push(id);
+    }
   });
   if (inValidQuestions.length === 0) {
     if (validQuestions.length !== 0) {

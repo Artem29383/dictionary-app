@@ -15,6 +15,7 @@ const ModalOverlay = ({
   linkPath,
   clickHandler,
   isOpen,
+  isClosable,
 }) => {
   const [animated, setAnimated] = useState(null);
   const SPEED_ANIMATION = '0.2s';
@@ -49,19 +50,21 @@ const ModalOverlay = ({
 
   return (
     <S.OverlayM isAnim={animated} speedAnim={SPEED_ANIMATION} isOpen={isOpen}>
-      <S.BackDrop onClick={hideWindow} />
+      {isClosable && <S.BackDrop onClick={hideWindow} />}
       <S.ModalWindow
         isAnim={animated}
         speedAnim={SPEED_ANIMATION}
         isOpen={isOpen}
       >
         <S.ModalHeader>
-          <Cross
-            rotate="45deg"
-            right="20px"
-            position="absolute"
-            clickHandler={hideWindow}
-          />
+          {isClosable && (
+            <Cross
+              rotate="45deg"
+              right="20px"
+              position="absolute"
+              clickHandler={hideWindow}
+            />
+          )}
           <S.Title>{headerText}</S.Title>
         </S.ModalHeader>
         {children}
@@ -106,10 +109,12 @@ ModalOverlay.propTypes = {
   link: PropTypes.string,
   linkPath: PropTypes.string,
   clickHandler: PropTypes.func,
+  isClosable: PropTypes.bool,
 };
 
 ModalOverlay.defaultProps = {
   isFooter: false,
+  isClosable: true,
   linkPath: '/',
   headerText: 'just modal window',
 };

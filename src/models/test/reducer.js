@@ -30,10 +30,7 @@ const testReducer = createSlice({
     pushAnswer(state, { payload }) {
       const { id, qId, answer } = payload;
       state.questions.entities[id].answer.entities[qId] = answer;
-      state.questions.entities[id].answer.ids = [
-        ...state.questions.entities[id].answer.ids,
-        qId,
-      ];
+      state.questions.entities[id].answer.ids.push(qId);
     },
     pushQuestion(state, { payload }) {
       const { id, answer, questName } = payload;

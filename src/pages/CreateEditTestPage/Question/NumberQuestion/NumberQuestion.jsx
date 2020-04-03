@@ -65,6 +65,7 @@ const NumberQuestion = ({ id, entities, numberId }) => {
           handler={setValueHandler}
           value={value}
           focus
+          type="number"
           blur={endEditBlur}
           keyDown={endEditKey}
         />
