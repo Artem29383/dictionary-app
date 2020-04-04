@@ -1,5 +1,6 @@
 import styled from 'styled-components/macro';
 import { colors } from 'styles/constants';
+import { device } from 'constants/device';
 /* stylelint-disable */
 
 export default {
@@ -34,6 +35,11 @@ export default {
       color: ${colors.white};
       background-color: ${colors.lavenderPurple};
       border-color: ${colors.astral};
+    }
+
+    @media ${device.mobileL} {
+      padding: 3px 15px;
+      font-size: 16px;
     }
   `,
 };

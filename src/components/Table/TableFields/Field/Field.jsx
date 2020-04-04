@@ -9,7 +9,7 @@ import useSelector from 'hooks/useSelector';
 import { getIdsSelector } from 'models/dictionary/selectors';
 import S from './Field.styled';
 
-const Field = ({ id, userId, login, words, f }) => {
+const Field = ({ id, userId, login, words, f, label }) => {
   const updateField = useAction(UPDATE_FIELD_WORD);
   const [originalText, setOriginalText] = useState('');
   const [editId, setEditId] = useState(null);
@@ -62,9 +62,8 @@ const Field = ({ id, userId, login, words, f }) => {
     setEditId(Number(dataSet.id));
     setEdit();
   };
-
   return (
-    <S.ThText>
+    <S.ThText data-label={label}>
       {edit ? (
         <S.Input
           type="text"
@@ -98,4 +97,5 @@ Field.propTypes = {
   userId: PropTypes.number,
   login: PropTypes.string,
   f: PropTypes.string,
+  label: PropTypes.string,
 };

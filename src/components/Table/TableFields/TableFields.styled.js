@@ -1,5 +1,6 @@
 import styled from 'styled-components/macro';
 import { colors } from 'styles/constants';
+import { device } from 'constants/device';
 
 export default {
   TrText: styled.tr`
@@ -10,8 +11,14 @@ export default {
       color: ${colors.scorpion};
       background-color: ${colors.alto};
     }
+
+    @media ${device.tabletM} {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
   `,
-  ThText: styled.th`
+  ThText: styled.td`
     font-size: 15px;
     color: inherit;
     line-height: 1.4;
@@ -20,6 +27,17 @@ export default {
     font-family: Light, serif;
     padding-top: 16px;
     padding-bottom: 16px;
+
+    @media ${device.tabletM} {
+      display: block;
+      width: 100%;
+
+      &::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 10%;
+      }
+    }
 
     &.red {
       color: red;
@@ -34,5 +52,13 @@ export default {
   `,
   Text: styled.span`
     cursor: pointer;
+
+    @media ${device.tabletM} {
+      margin: 0 130px 0 auto;
+    }
+
+    @media ${device.mobileL} {
+      margin: 0 50px 0 auto;
+    }
   `,
 };

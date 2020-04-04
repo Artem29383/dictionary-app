@@ -17,7 +17,7 @@ const App = () => {
       {init && (
         <S.Content>
           {data.isAuth && <Navigation />}
-          {<AppRoutes data={data} />}
+          <AppRoutes data={data} />
         </S.Content>
       )}
     </ThemeProvider>

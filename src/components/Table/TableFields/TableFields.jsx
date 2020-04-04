@@ -24,7 +24,11 @@ const TableFields = ({ id, words, userId, login }) => {
   };
 
   // eslint-disable-next-line no-unused-vars
-  const fields = ['word', 'translate', 'pronunciation'].map(f => {
+  const fields = [
+    ['word', 'Слова'],
+    ['translate', 'Перевод'],
+    ['pronunciation', 'Произношение'],
+  ].map(f => {
     return (
       <Field
         key={f}
@@ -32,7 +36,8 @@ const TableFields = ({ id, words, userId, login }) => {
         words={words}
         login={login}
         userId={userId}
-        f={f}
+        f={f[0]}
+        label={f[1]}
         ids={ids}
       />
     );
@@ -41,7 +46,7 @@ const TableFields = ({ id, words, userId, login }) => {
   return (
     <S.TrText>
       {fields}
-      <S.ThText className="red">
+      <S.ThText data-label="Удаление" className="red">
         <S.ThDiv>
           <S.Text data-id={id} onClick={deleteWord}>
             ✖

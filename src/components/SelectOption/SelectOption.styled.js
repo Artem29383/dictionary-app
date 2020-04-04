@@ -1,22 +1,24 @@
 import styled from 'styled-components/macro';
 import { colors } from 'styles/constants';
+import { device } from 'constants/device';
 
 export default {
-  Select: styled.span.attrs(({ select }) => ({
-    style: {
-      overflow: `${select ? 'visible' : 'hidden'}`,
-      height: `${select ? 'auto' : '25px'}`,
-    },
-  }))`
+  Select: styled.span`
     cursor: pointer;
     margin: 0 0 20px 20px;
     z-index: 500;
     max-width: 100px;
     background-color: ${colors.white};
+    overflow: ${({ select }) => (select ? 'visible' : 'hidden')};
+    height: ${({ select }) => (select ? 'auto' : '25px')};
     border: 1px solid ${colors.alto};
     color: ${colors.astral};
     position: relative;
     display: inline-block;
+
+    @media ${device.mobileL} {
+      height: ${({ select }) => (select ? 'auto' : '21px')};
+    }
   `,
   Option: styled.span`
     display: block;
@@ -25,12 +27,17 @@ export default {
     border: 1px solid ${colors.alto};
     width: 100%;
 
-    &:nth-child(2) {
-      top: 50px;
+    @media ${device.mobileL} {
+      width: calc(100% + 2px);
+      left: -1px;
     }
 
-    &:nth-child(3) {
-      top: 75px;
+    &:nth-child(2) {
+      top: 50px;
+
+      @media ${device.mobileL} {
+        top: 40px;
+      }
     }
 
     &:hover {
@@ -47,5 +54,10 @@ export default {
     color: ${colors.astral};
     font-size: 24px;
     width: 100%;
+
+    @media ${device.mobileL} {
+      max-width: 350px;
+      font-size: 20px;
+    }
   `,
 };

@@ -1,5 +1,6 @@
 import styled from 'styled-components/macro';
 import { colors } from 'styles/constants';
+import { device } from 'constants/device';
 
 export default {
   DivTable: styled.div`
@@ -13,6 +14,22 @@ export default {
     box-shadow: 0 0 15px 1px rgba(117, 117, 117, 1);
     transform: translateX(-50%);
     margin: 50px 0 50px 50%;
+
+    @media ${device.laptop} {
+      max-width: 600px;
+    }
+
+    @media ${device.w630} {
+      max-width: 500px;
+    }
+
+    @media ${device.tabletM} {
+      max-width: 400px;
+    }
+
+    @media ${device.mobileL} {
+      max-width: 300px;
+    }
   `,
   Table: styled.table`
     border-collapse: collapse;
@@ -51,7 +68,11 @@ export default {
       color: ${colors.blazeOrange};
     }
   `,
-  Thead: styled.thead``,
+  Thead: styled.thead`
+    @media ${device.tabletM} {
+      display: none;
+    }
+  `,
   Tr: styled.tr``,
   Tbody: styled.tbody``,
 };

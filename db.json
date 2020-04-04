@@ -80,7 +80,7 @@
           "id": 1584957180940,
           "word": "Dictionary",
           "translate": "Словарь",
-          "pronunciation": "Дикшионари"
+          "pronunciation": "Диктионари"
         },
         {
           "id": 1584957212178,
@@ -119,6 +119,12 @@
           "pronunciation": "Сворд"
         },
         {
+          "id": 1585924445716,
+          "word": "Vampire",
+          "translate": "Вампир",
+          "pronunciation": "Вампайр"
+        },
+        {
           "id": 1584957103201,
           "word": "World",
           "translate": "Мир",
@@ -129,12 +135,6 @@
           "word": "Zoom",
           "translate": "Увеличение",
           "pronunciation": "Зум"
-        },
-        {
-          "id": 1585924445716,
-          "word": "Vampire",
-          "translate": "Вампир",
-          "pronunciation": "Вампайр"
         }
       ]
     },

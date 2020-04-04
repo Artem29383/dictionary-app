@@ -1,5 +1,6 @@
 import styled from 'styled-components/macro';
 import { NavLink } from 'react-router-dom';
+import { device } from 'constants/device';
 import theme from '../../styles/theme';
 
 export default {
@@ -13,6 +14,10 @@ export default {
     width: 100%;
     height: auto;
     border-radius: ${theme.radius.google};
+
+    @media ${device.mobileM} {
+      max-width: 310px;
+    }
   `,
   WrapInput: styled.div`
     width: 100%;
