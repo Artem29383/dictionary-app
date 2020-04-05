@@ -1,10 +1,11 @@
 import styled from 'styled-components/macro';
 import { colors } from 'styles/constants';
+import { device } from 'constants/device';
 
 export default {
   Content: styled.div`
     width: 100%;
-    height: calc(100vh - 80px);
+    height: 500px;
     display: flex;
     font-size: 24px;
     justify-content: center;
@@ -15,7 +16,16 @@ export default {
     width: 100%;
     height: auto;
     border-radius: 5px;
+    overflow: hidden;
     box-shadow: 0 0 15px 1px rgba(117, 117, 117, 1);
+
+    @media ${device.mobileL} {
+      max-width: 350px;
+    }
+
+    @media ${device.mobileM} {
+      max-width: 300px;
+    }
   `,
   FormHeader: styled.div`
     height: 80px;
@@ -53,6 +63,18 @@ export default {
     display: flex;
     justify-content: space-around;
     padding: 0 40px;
+
+    @media ${device.mobileL} {
+      padding: 0 15px;
+    }
+
+    @media ${device.mobileM} {
+      padding: 0 10px;
+
+      & button {
+        font-size: 14px;
+      }
+    }
   `,
   FormText: styled.div`
     text-align: center;

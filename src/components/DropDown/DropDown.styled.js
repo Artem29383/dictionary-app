@@ -12,6 +12,11 @@ export default {
     cursor: pointer;
     font-size: 16px;
     color: ${colors.olsoGray};
+
+    &.dictionary {
+      max-width: 255px;
+      margin: 20px auto 0 auto;
+    }
   `,
   DefaultValueDiv: styled.div`
     position: absolute;

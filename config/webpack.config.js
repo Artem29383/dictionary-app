@@ -10,7 +10,19 @@ const filename = ext => isDev ? `[name].${ext}` : `[name].[hash].${ext}`;
 
 const babelOptions = preset => {
   const options = {
-    presets: ['@babel/preset-env'],
+    presets: [
+      [
+        "@babel/preset-env",
+        {
+          "useBuiltIns": "usage",
+          "corejs": 2
+        },
+      ],
+      "minify"
+    ],
+    "plugins": [
+      "@babel/plugin-transform-runtime"
+    ]
   };
   if (preset) options.presets.push(preset);
   return options;

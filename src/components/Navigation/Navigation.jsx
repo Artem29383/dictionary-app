@@ -21,6 +21,9 @@ const Navigation = () => {
       window.pageYOffset > scroll + 50 &&
       window.pageYOffset > headerHeight.current.clientHeight
     ) {
+      if (showNav) {
+        setShowNav(false);
+      }
       setShowHeader(false);
       setScroll(window.pageYOffset);
     } else if (window.pageYOffset < scroll) {

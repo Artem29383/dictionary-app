@@ -3,7 +3,8 @@ module.exports = {
   extends: ['airbnb', 'prettier/react', 'plugin:prettier/recommended'],
   plugins: [
     "react",
-    "prettier"
+    "prettier",
+    "jest"
   ],
   settings: {
     "react": {
@@ -59,7 +60,12 @@ module.exports = {
         "singleQuote": true,
         "trailingComma": "es5"
       }
-    ]
+    ],
+    "jest/no-disabled-tests": "warn",
+    "jest/no-focused-tests": "error",
+    "jest/no-identical-title": "error",
+    "jest/prefer-to-have-length": "warn",
+    "jest/valid-expect": "error"
   },
   globals: {
     "window": true,

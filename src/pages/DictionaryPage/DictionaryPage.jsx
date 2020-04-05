@@ -19,10 +19,10 @@ import { useInput } from 'hooks/useInput';
 import TableSearch from 'components/TableSearch';
 import { chunks } from 'utils/chunks';
 import Paginate from 'components/Paginate';
-import SelectOption from 'components/SelectOption';
 import AddWordModal from 'pages/DictionaryPage/AddWordModal';
 import { getUserSelector } from 'models/user/selectors';
 import Portal from 'components/Portal';
+import DropDown from 'components/DropDown';
 import S from './DictionaryPage.styled';
 
 const DictionaryPage = () => {
@@ -69,10 +69,6 @@ const DictionaryPage = () => {
     setCurrentPage(0);
   }, [elemCountsOnPage, filteredIds, ids.length]);
 
-  const choosePageSizeHandler = e => {
-    setElemCountsOnPage(Number(e.currentTarget.innerText));
-  };
-
   return (
     <S.Content>
       <TableSearch
@@ -81,11 +77,12 @@ const DictionaryPage = () => {
         onChange={setValue}
         label="Поиск"
       />
-      <SelectOption
-        choosePageSizeHandler={choosePageSizeHandler}
-        elemCountsOnPage={elemCountsOnPage}
-        arrayOptions={[10, 50, 100]}
-        text="Элементов на странице"
+      <DropDown
+        className="dictionary"
+        label="Элементов на странице:"
+        value={String(elemCountsOnPage)}
+        setValue={setElemCountsOnPage}
+        options={[10, 50, 100]}
       />
       {isLoading ? (
         <Loader />

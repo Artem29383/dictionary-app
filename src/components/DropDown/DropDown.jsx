@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import S from './DropDown.styled';
 
-const DropDown = ({ options, value, setValue }) => {
+const DropDown = ({ options, value, setValue, className, label }) => {
   const [showDropDown, setShowDropDown] = useState(false);
   const [temp, setTemp] = useState(value);
   const [animated, setAnimated] = useState(false);
@@ -55,7 +55,7 @@ const DropDown = ({ options, value, setValue }) => {
   const liList = options.map(
     // eslint-disable-next-line array-callback-return,consistent-return
     li => {
-      if (li !== value) {
+      if (String(li) !== value) {
         return (
           <S.Li
             key={li}
@@ -72,11 +72,12 @@ const DropDown = ({ options, value, setValue }) => {
   );
 
   return (
-    <S.DropDownDiv>
+    <S.DropDownDiv className={className}>
       <S.DefaultValueDiv>
         {/* eslint-disable-next-line react/jsx-props-no-spreading */}
         <S.DefaultValue onClick={dropClickHandler} {...coordinates}>
-          {value} <S.Triangle isAnim={animated} speedAnim={SPEED_ANIMATION} />
+          {label} {value}{' '}
+          <S.Triangle isAnim={animated} speedAnim={SPEED_ANIMATION} />
         </S.DefaultValue>
       </S.DefaultValueDiv>
       {showDropDown && (
@@ -93,4 +94,6 @@ DropDown.propTypes = {
   options: PropTypes.array,
   value: PropTypes.string,
   setValue: PropTypes.func,
+  className: PropTypes.string,
+  label: PropTypes.string,
 };

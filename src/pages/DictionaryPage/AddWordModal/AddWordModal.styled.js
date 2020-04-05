@@ -1,5 +1,6 @@
 import styled from 'styled-components/macro';
 import { colors } from 'styles/constants';
+import { device } from 'constants/device';
 
 export default {
   OverlayM: styled.div`
@@ -15,9 +16,10 @@ export default {
     overflow: hidden;
   `,
   ModalWindow: styled.form`
-    width: 420px;
+    max-width: 420px;
     height: auto;
     z-index: 1000;
+    width: calc(100% - 30px);
     position: relative;
     min-height: 160px;
     background-color: ${colors.white};
@@ -35,6 +37,12 @@ export default {
     font-size: 24px;
     vertical-align: middle;
     line-height: 3.21;
+
+    @media ${device.mobileM} {
+      height: 50px;
+      font-size: 18px;
+      line-height: 2.75;
+    }
   `,
   ModalInputWrap: styled.div`
     margin-top: 30px;
@@ -48,6 +56,14 @@ export default {
     justify-content: space-around;
     align-items: center;
     padding-bottom: 10px;
+
+    @media ${device.mobileL} {
+      width: 75%;
+    }
+
+    @media ${device.mobileM} {
+      width: 90%;
+    }
   `,
   Message: styled.div`
     line-height: 2;
