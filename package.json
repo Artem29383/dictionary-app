@@ -65,7 +65,7 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.2.5",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "connected-react-router": "^6.7.0",
     "json-server": "^0.16.1",
     "lodash.memoize": "^4.1.2",
